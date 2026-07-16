@@ -1,0 +1,1 @@
+-debug "typical" --timescale "1ns/1ps" -top "tb_ace_direct" -snapshot "work_snapshot_direct" 

@@ -1,0 +1,135 @@
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/igorcintra13/culsans_questa/modules/cva6/core/include/cv64a6_imafdc_sv39_wb_config_pkg.sv" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/igorcintra13/culsans_questa/modules/cva6/core/include/riscv_pkg.sv" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/igorcintra13/culsans_questa/modules/cva6/corev_apu/tb/common_verification/src/clk_rst_gen.sv" into library work
+INFO: [VRFC 10-311] analyzing module clk_rst_gen
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/igorcintra13/culsans_questa/modules/cva6/corev_apu/tb/common_verification/src/rand_id_queue.sv" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/igorcintra13/culsans_questa/modules/cva6/corev_apu/tb/common_verification/src/rand_stream_mst.sv" into library work
+INFO: [VRFC 10-311] analyzing module rand_stream_mst
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/igorcintra13/culsans_questa/modules/cva6/corev_apu/tb/common_verification/src/rand_synch_holdable_driver.sv" into library work
+INFO: [VRFC 10-311] analyzing module rand_synch_holdable_driver
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/igorcintra13/culsans_questa/modules/cva6/corev_apu/tb/common_verification/src/rand_verif_pkg.sv" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/igorcintra13/culsans_questa/modules/cva6/corev_apu/tb/common_verification/src/sim_timeout.sv" into library work
+INFO: [VRFC 10-311] analyzing module sim_timeout
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/igorcintra13/culsans_questa/modules/cva6/corev_apu/tb/common_verification/src/rand_synch_driver.sv" into library work
+INFO: [VRFC 10-311] analyzing module rand_synch_driver
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/igorcintra13/culsans_questa/modules/cva6/corev_apu/tb/common_verification/src/rand_stream_slv.sv" into library work
+INFO: [VRFC 10-311] analyzing module rand_stream_slv
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/igorcintra13/culsans_questa/modules/cva6/corev_apu/riscv-dbg/src/dm_pkg.sv" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/igorcintra13/culsans_questa/modules/cva6/vendor/pulp-platform/axi/src/axi_pkg.sv" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/igorcintra13/culsans_questa/modules/cva6/vendor/pulp-platform/axi/src/axi_intf.sv" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/igorcintra13/culsans_questa/modules/cva6/vendor/pulp-platform/axi/src/axi_test.sv" into library work
+INFO: [VRFC 10-311] analyzing module axi_chan_logger
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/igorcintra13/culsans_questa/modules/cva6/vendor/planv/ace/src/ace_pkg.sv" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/igorcintra13/culsans_questa/modules/cva6/vendor/planv/ace/src/ace_intf.sv" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/igorcintra13/culsans_questa/modules/cva6/vendor/planv/ace/src/ace_test.sv" into library work
+INFO: [VRFC 10-311] analyzing module ace_chan_logger
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/igorcintra13/culsans_questa/modules/cva6/vendor/planv/ace/src/snoop_pkg.sv" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/igorcintra13/culsans_questa/modules/cva6/vendor/planv/ace/src/snoop_intf.sv" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/igorcintra13/culsans_questa/modules/cva6/vendor/planv/ace/src/snoop_test.sv" into library work
+INFO: [VRFC 10-311] analyzing module snoop_chan_logger
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/igorcintra13/culsans_questa/modules/cva6/common/local/rvfi/rvfi_pkg.sv" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/igorcintra13/culsans_questa/modules/cva6/core/include/ariane_dm_pkg.sv" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/igorcintra13/culsans_questa/modules/cva6/core/include/ariane_pkg.sv" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/igorcintra13/culsans_questa/modules/cva6/corev_apu/tb/ariane_soc_pkg.sv" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/igorcintra13/culsans_questa/modules/cva6/core/include/ariane_axi_pkg.sv" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/igorcintra13/culsans_questa/modules/cva6/corev_apu/tb/ariane_axi_soc_pkg.sv" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/igorcintra13/culsans_questa/modules/cva6/core/include/ariane_ace_pkg.sv" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/igorcintra13/culsans_questa/modules/cva6/core/include/std_cache_pkg.sv" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/igorcintra13/culsans_questa/modules/cva6/core/cache_subsystem/axi_adapter.sv" into library work
+INFO: [VRFC 10-311] analyzing module axi_adapter
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/igorcintra13/culsans_questa/modules/cva6/core/cache_subsystem/cache_ctrl.sv" into library work
+INFO: [VRFC 10-311] analyzing module cache_ctrl
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/igorcintra13/culsans_questa/modules/cva6/core/cache_subsystem/snoop_cache_ctrl.sv" into library work
+INFO: [VRFC 10-311] analyzing module snoop_cache_ctrl
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/igorcintra13/culsans_questa/modules/cva6/core/cache_subsystem/miss_handler.sv" into library work
+INFO: [VRFC 10-311] analyzing module miss_handler
+INFO: [VRFC 10-311] analyzing module axi_adapter_arbiter
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/igorcintra13/culsans_questa/modules/cva6/core/cache_subsystem/std_nbdcache.sv" into library work
+INFO: [VRFC 10-311] analyzing module std_nbdcache
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/igorcintra13/culsans_questa/modules/cva6/core/cache_subsystem/amo_alu.sv" into library work
+INFO: [VRFC 10-311] analyzing module amo_alu
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/igorcintra13/culsans_questa/modules/cva6/core/cache_subsystem/tag_cmp.sv" into library work
+INFO: [VRFC 10-311] analyzing module tag_cmp
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/igorcintra13/culsans_questa/modules/cva6/vendor/pulp-platform/common_cells/src/cf_math_pkg.sv" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/igorcintra13/culsans_questa/modules/cva6/vendor/pulp-platform/common_cells/src/lfsr_8bit.sv" into library work
+INFO: [VRFC 10-311] analyzing module lfsr_8bit
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/igorcintra13/culsans_questa/modules/cva6/vendor/pulp-platform/common_cells/src/fifo_v3.sv" into library work
+INFO: [VRFC 10-311] analyzing module fifo_v3
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/igorcintra13/culsans_questa/modules/cva6/vendor/pulp-platform/common_cells/src/lzc.sv" into library work
+INFO: [VRFC 10-311] analyzing module lzc
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/igorcintra13/culsans_questa/modules/cva6/vendor/pulp-platform/common_cells/src/rr_arb_tree.sv" into library work
+INFO: [VRFC 10-311] analyzing module rr_arb_tree
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/igorcintra13/culsans_questa/modules/cva6/vendor/pulp-platform/common_cells/src/exp_backoff.sv" into library work
+INFO: [VRFC 10-311] analyzing module exp_backoff
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/igorcintra13/culsans_questa/modules/cva6/vendor/pulp-platform/common_cells/src/stream_arbiter.sv" into library work
+INFO: [VRFC 10-311] analyzing module stream_arbiter
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/igorcintra13/culsans_questa/modules/cva6/vendor/pulp-platform/common_cells/src/stream_arbiter_flushable.sv" into library work
+INFO: [VRFC 10-311] analyzing module stream_arbiter_flushable
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/igorcintra13/culsans_questa/modules/cva6/vendor/pulp-platform/common_cells/src/stream_mux.sv" into library work
+INFO: [VRFC 10-311] analyzing module stream_mux
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/igorcintra13/culsans_questa/modules/cva6/vendor/pulp-platform/common_cells/src/stream_demux.sv" into library work
+INFO: [VRFC 10-311] analyzing module stream_demux
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/igorcintra13/culsans_questa/modules/cva6/common/local/util/sram_pulp.sv" into library work
+INFO: [VRFC 10-311] analyzing module sram
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/igorcintra13/culsans_questa/modules/cva6/common/local/util/tc_sram_wrapper.sv" into library work
+INFO: [VRFC 10-311] analyzing module tc_sram_wrapper
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/igorcintra13/culsans_questa/modules/cva6/vendor/pulp-platform/tech_cells_generic/src/rtl/tc_sram.sv" into library work
+INFO: [VRFC 10-311] analyzing module tc_sram
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/igorcintra13/culsans_questa/modules/cva6/corev_apu/src/axi_riscv_atomics/src/axi_res_tbl.sv" into library work
+INFO: [VRFC 10-311] analyzing module axi_res_tbl
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/igorcintra13/culsans_questa/modules/cva6/corev_apu/src/axi_riscv_atomics/src/axi_riscv_amos.sv" into library work
+INFO: [VRFC 10-311] analyzing module axi_riscv_amos
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/igorcintra13/culsans_questa/modules/cva6/corev_apu/src/axi_riscv_atomics/src/axi_riscv_amos_alu.sv" into library work
+INFO: [VRFC 10-311] analyzing module axi_riscv_amos_alu
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/igorcintra13/culsans_questa/modules/cva6/corev_apu/src/axi_riscv_atomics/src/axi_riscv_lrsc.sv" into library work
+INFO: [VRFC 10-311] analyzing module axi_riscv_lrsc
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/igorcintra13/culsans_questa/modules/cva6/corev_apu/src/axi_riscv_atomics/src/axi_riscv_atomics.sv" into library work
+INFO: [VRFC 10-311] analyzing module axi_riscv_atomics
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/igorcintra13/culsans_questa/modules/cva6/corev_apu/src/axi_riscv_atomics/src/axi_riscv_atomics_wrap.sv" into library work
+INFO: [VRFC 10-311] analyzing module axi_riscv_atomics_wrap
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/igorcintra13/culsans_questa/modules/cva6/vendor/pulp-platform/common_cells/src/deprecated/fifo_v2.sv" into library work
+INFO: [VRFC 10-311] analyzing module fifo_v2
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/igorcintra13/culsans_questa/modules/cva6/vendor/pulp-platform/common_cells/src/id_queue.sv" into library work
+INFO: [VRFC 10-311] analyzing module id_queue
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/igorcintra13/culsans_questa/modules/cva6/vendor/pulp-platform/common_cells/src/stream_fork.sv" into library work
+INFO: [VRFC 10-311] analyzing module stream_fork
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/igorcintra13/culsans_questa/modules/cva6/vendor/pulp-platform/common_cells/src/stream_filter.sv" into library work
+INFO: [VRFC 10-311] analyzing module stream_filter
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/igorcintra13/culsans_questa/modules/cva6/vendor/pulp-platform/common_cells/src/fall_through_register.sv" into library work
+INFO: [VRFC 10-311] analyzing module fall_through_register
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/igorcintra13/culsans_questa/modules/cva6/vendor/pulp-platform/common_cells/src/stream_register.sv" into library work
+INFO: [VRFC 10-311] analyzing module stream_register
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/igorcintra13/culsans_questa/modules/cva6/vendor/pulp-platform/common_cells/src/spill_register_flushable.sv" into library work
+INFO: [VRFC 10-311] analyzing module spill_register_flushable
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/igorcintra13/culsans_questa/modules/cva6/vendor/pulp-platform/common_cells/src/spill_register.sv" into library work
+INFO: [VRFC 10-311] analyzing module spill_register
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/igorcintra13/culsans_questa/modules/cva6/vendor/pulp-platform/common_cells/src/onehot_to_bin.sv" into library work
+INFO: [VRFC 10-311] analyzing module onehot_to_bin
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/igorcintra13/culsans_questa/modules/cva6/vendor/pulp-platform/axi/src/axi_multicut.sv" into library work
+INFO: [VRFC 10-311] analyzing module axi_multicut
+INFO: [VRFC 10-311] analyzing module axi_multicut_intf
+INFO: [VRFC 10-311] analyzing module axi_lite_multicut_intf
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/igorcintra13/culsans_questa/modules/cva6/corev_apu/tb/common/tb_dcache_pkg.sv" into library work
+WARNING: [VRFC 10-3400] illegal argument of type string in 'size()', expected array/integral type [/home/igorcintra13/culsans_questa/modules/cva6/corev_apu/tb/common/tb_dcache_pkg.sv:112]
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/igorcintra13/culsans_questa/modules/cva6/corev_apu/tb/common/tb_readport.sv" into library work
+WARNING: [VRFC 10-965] invalid size of integer constant literal [/home/igorcintra13/culsans_questa/modules/cva6/corev_apu/tb/common/tb_readport.sv:139]
+WARNING: [VRFC 10-5025] system function call '$psprintf' is not IEEE standard [/home/igorcintra13/culsans_questa/modules/cva6/corev_apu/tb/common/tb_readport.sv:380]
+WARNING: [VRFC 10-5025] system function call '$psprintf' is not IEEE standard [/home/igorcintra13/culsans_questa/modules/cva6/corev_apu/tb/common/tb_readport.sv:382]
+WARNING: [VRFC 10-5025] system function call '$psprintf' is not IEEE standard [/home/igorcintra13/culsans_questa/modules/cva6/corev_apu/tb/common/tb_readport.sv:389]
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/igorcintra13/culsans_questa/modules/cva6/corev_apu/tb/common/tb_writeport.sv" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/igorcintra13/culsans_questa/modules/cva6/corev_apu/tb/common/tb_amoport.sv" into library work
+WARNING: [VRFC 10-5025] system function call '$psprintf' is not IEEE standard [/home/igorcintra13/culsans_questa/modules/cva6/corev_apu/tb/common/tb_amoport.sv:205]
+WARNING: [VRFC 10-5025] system function call '$psprintf' is not IEEE standard [/home/igorcintra13/culsans_questa/modules/cva6/corev_apu/tb/common/tb_amoport.sv:207]
+WARNING: [VRFC 10-5025] system function call '$psprintf' is not IEEE standard [/home/igorcintra13/culsans_questa/modules/cva6/corev_apu/tb/common/tb_amoport.sv:209]
+WARNING: [VRFC 10-5025] system function call '$psprintf' is not IEEE standard [/home/igorcintra13/culsans_questa/modules/cva6/corev_apu/tb/common/tb_amoport.sv:217]
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/igorcintra13/culsans_questa/modules/cva6/corev_apu/tb/tb_wb_dcache/hdl/tb.sv" into library work
+INFO: [VRFC 10-311] analyzing module tb
+WARNING: [VRFC 10-965] invalid size of integer constant literal [/home/igorcintra13/culsans_questa/modules/cva6/corev_apu/tb/tb_wb_dcache/hdl/tb.sv:291]
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/igorcintra13/culsans_questa/modules/cva6/corev_apu/tb/tb_wb_dcache/hdl/dcache_checker.sv" into library work
+INFO: [VRFC 10-311] analyzing module dcache_checker
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/igorcintra13/culsans_questa/modules/cva6/corev_apu/tb/tb_wb_dcache/hdl/request_scheduler.sv" into library work
+INFO: [VRFC 10-311] analyzing module request_scheduler
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/igorcintra13/culsans_questa/modules/cva6/corev_apu/tb/tb_wb_dcache/hdl/tb_ace.sv" into library work
+INFO: [VRFC 10-311] analyzing module tb_ace
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/igorcintra13/culsans_questa/modules/cva6/corev_apu/tb/tb_wb_dcache/hdl/tb_ace_direct.sv" into library work
+INFO: [VRFC 10-311] analyzing module tb_ace_direct

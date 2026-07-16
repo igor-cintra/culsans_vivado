@@ -1,0 +1,629 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="work_snapshot.wdb" id="1">
+         <top_modules>
+            <top_module name="ace_pkg" />
+            <top_module name="ace_test" />
+            <top_module name="ariane_ace" />
+            <top_module name="ariane_axi" />
+            <top_module name="ariane_dm_pkg" />
+            <top_module name="ariane_pkg" />
+            <top_module name="axi_pkg" />
+            <top_module name="rand_id_queue_pkg" />
+            <top_module name="riscv" />
+            <top_module name="rvfi_pkg" />
+            <top_module name="snoop_pkg" />
+            <top_module name="snoop_test" />
+            <top_module name="std" />
+            <top_module name="std_cache_pkg" />
+            <top_module name="tb_ace" />
+            <top_module name="tb_pkg" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0.000 ns"></ZoomStartTime>
+      <ZoomEndTime time="291.920 ns"></ZoomEndTime>
+      <Cursor1Time time="70.000 ns"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="261"></NameColumnWidth>
+      <ValueColumnWidth column_width="66"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="4" />
+   <wvobject type="group" fp_name="group729">
+      <obj_property name="label">tb_ace</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject type="logic" fp_name="/tb_ace/enable_i">
+         <obj_property name="ElementShortName">enable_i</obj_property>
+         <obj_property name="ObjectShortName">enable_i</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/tb_ace/flush_i">
+         <obj_property name="ElementShortName">flush_i</obj_property>
+         <obj_property name="ObjectShortName">flush_i</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/tb_ace/flush_ack_o">
+         <obj_property name="ElementShortName">flush_ack_o</obj_property>
+         <obj_property name="ObjectShortName">flush_ack_o</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/tb_ace/miss_o">
+         <obj_property name="ElementShortName">miss_o</obj_property>
+         <obj_property name="ObjectShortName">miss_o</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/amo_req_i">
+         <obj_property name="ElementShortName">amo_req_i</obj_property>
+         <obj_property name="ObjectShortName">amo_req_i</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/amo_resp_o">
+         <obj_property name="ElementShortName">amo_resp_o</obj_property>
+         <obj_property name="ObjectShortName">amo_resp_o</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/req_ports_i">
+         <obj_property name="ElementShortName">req_ports_i[2:0]</obj_property>
+         <obj_property name="ObjectShortName">req_ports_i[2:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/req_ports_o">
+         <obj_property name="ElementShortName">req_ports_o[2:0]</obj_property>
+         <obj_property name="ObjectShortName">req_ports_o[2:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/axi_data_o">
+         <obj_property name="ElementShortName">axi_data_o</obj_property>
+         <obj_property name="ObjectShortName">axi_data_o</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/axi_data_i">
+         <obj_property name="ElementShortName">axi_data_i</obj_property>
+         <obj_property name="ObjectShortName">axi_data_i</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/axi_bypass_o">
+         <obj_property name="ElementShortName">axi_bypass_o</obj_property>
+         <obj_property name="ObjectShortName">axi_bypass_o</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/axi_bypass_i">
+         <obj_property name="ElementShortName">axi_bypass_i</obj_property>
+         <obj_property name="ObjectShortName">axi_bypass_i</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/snoop_port_o">
+         <obj_property name="ElementShortName">snoop_port_o</obj_property>
+         <obj_property name="ObjectShortName">snoop_port_o</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/snoop_port_i">
+         <obj_property name="ElementShortName">snoop_port_i</obj_property>
+         <obj_property name="ObjectShortName">snoop_port_i</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/tb_ace/clk_i">
+         <obj_property name="ElementShortName">clk_i</obj_property>
+         <obj_property name="ObjectShortName">clk_i</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/tb_ace/rst_ni">
+         <obj_property name="ElementShortName">rst_ni</obj_property>
+         <obj_property name="ObjectShortName">rst_ni</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/tb_ace/start_rd">
+         <obj_property name="ElementShortName">start_rd</obj_property>
+         <obj_property name="ObjectShortName">start_rd</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/tb_ace/start_wr">
+         <obj_property name="ElementShortName">start_wr</obj_property>
+         <obj_property name="ObjectShortName">start_wr</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/tb_ace/start_snoop">
+         <obj_property name="ElementShortName">start_snoop</obj_property>
+         <obj_property name="ObjectShortName">start_snoop</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/tb_ace/check_done">
+         <obj_property name="ElementShortName">check_done</obj_property>
+         <obj_property name="ObjectShortName">check_done</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject type="group" fp_name="group1364">
+      <obj_property name="label">dut</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject type="logic" fp_name="/tb_ace/i_dut/clk_i">
+         <obj_property name="ElementShortName">clk_i</obj_property>
+         <obj_property name="ObjectShortName">clk_i</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/tb_ace/i_dut/rst_ni">
+         <obj_property name="ElementShortName">rst_ni</obj_property>
+         <obj_property name="ObjectShortName">rst_ni</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/tb_ace/i_dut/enable_i">
+         <obj_property name="ElementShortName">enable_i</obj_property>
+         <obj_property name="ObjectShortName">enable_i</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/tb_ace/i_dut/flush_i">
+         <obj_property name="ElementShortName">flush_i</obj_property>
+         <obj_property name="ObjectShortName">flush_i</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/tb_ace/i_dut/flush_ack_o">
+         <obj_property name="ElementShortName">flush_ack_o</obj_property>
+         <obj_property name="ObjectShortName">flush_ack_o</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/tb_ace/i_dut/miss_o">
+         <obj_property name="ElementShortName">miss_o</obj_property>
+         <obj_property name="ObjectShortName">miss_o</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/tb_ace/i_dut/busy_o">
+         <obj_property name="ElementShortName">busy_o</obj_property>
+         <obj_property name="ObjectShortName">busy_o</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/tb_ace/i_dut/stall_i">
+         <obj_property name="ElementShortName">stall_i</obj_property>
+         <obj_property name="ObjectShortName">stall_i</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/tb_ace/i_dut/init_ni">
+         <obj_property name="ElementShortName">init_ni</obj_property>
+         <obj_property name="ObjectShortName">init_ni</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/tb_ace/i_dut/ongoing_write_o">
+         <obj_property name="ElementShortName">ongoing_write_o</obj_property>
+         <obj_property name="ObjectShortName">ongoing_write_o</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/i_dut/amo_req_i">
+         <obj_property name="ElementShortName">amo_req_i</obj_property>
+         <obj_property name="ObjectShortName">amo_req_i</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/i_dut/amo_resp_o">
+         <obj_property name="ElementShortName">amo_resp_o</obj_property>
+         <obj_property name="ObjectShortName">amo_resp_o</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/i_dut/req_ports_i">
+         <obj_property name="ElementShortName">req_ports_i[2:0]</obj_property>
+         <obj_property name="ObjectShortName">req_ports_i[2:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/i_dut/req_ports_o">
+         <obj_property name="ElementShortName">req_ports_o[2:0]</obj_property>
+         <obj_property name="ObjectShortName">req_ports_o[2:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/i_dut/axi_data_o">
+         <obj_property name="ElementShortName">axi_data_o</obj_property>
+         <obj_property name="ObjectShortName">axi_data_o</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/i_dut/axi_data_i">
+         <obj_property name="ElementShortName">axi_data_i</obj_property>
+         <obj_property name="ObjectShortName">axi_data_i</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/i_dut/axi_bypass_o">
+         <obj_property name="ElementShortName">axi_bypass_o</obj_property>
+         <obj_property name="ObjectShortName">axi_bypass_o</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/i_dut/axi_bypass_i">
+         <obj_property name="ElementShortName">axi_bypass_i</obj_property>
+         <obj_property name="ObjectShortName">axi_bypass_i</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/i_dut/snoop_port_o">
+         <obj_property name="ElementShortName">snoop_port_o</obj_property>
+         <obj_property name="ObjectShortName">snoop_port_o</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/i_dut/snoop_port_i">
+         <obj_property name="ElementShortName">snoop_port_i</obj_property>
+         <obj_property name="ObjectShortName">snoop_port_i</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/i_dut/req">
+         <obj_property name="ElementShortName">req[4:0][7:0]</obj_property>
+         <obj_property name="ObjectShortName">req[4:0][7:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/i_dut/addr">
+         <obj_property name="ElementShortName">addr[4:0][11:0]</obj_property>
+         <obj_property name="ObjectShortName">addr[4:0][11:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/i_dut/gnt">
+         <obj_property name="ElementShortName">gnt[4:0]</obj_property>
+         <obj_property name="ObjectShortName">gnt[4:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/i_dut/rdata">
+         <obj_property name="ElementShortName">rdata[7:0]</obj_property>
+         <obj_property name="ObjectShortName">rdata[7:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/i_dut/tag">
+         <obj_property name="ElementShortName">tag[4:0][43:0]</obj_property>
+         <obj_property name="ObjectShortName">tag[4:0][43:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/i_dut/wdata">
+         <obj_property name="ElementShortName">wdata[4:0]</obj_property>
+         <obj_property name="ObjectShortName">wdata[4:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/i_dut/we">
+         <obj_property name="ElementShortName">we[4:0]</obj_property>
+         <obj_property name="ObjectShortName">we[4:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/i_dut/be">
+         <obj_property name="ElementShortName">be[4:0]</obj_property>
+         <obj_property name="ObjectShortName">be[4:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/i_dut/hit_way">
+         <obj_property name="ElementShortName">hit_way[7:0]</obj_property>
+         <obj_property name="ObjectShortName">hit_way[7:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/i_dut/dirty_way">
+         <obj_property name="ElementShortName">dirty_way[7:0]</obj_property>
+         <obj_property name="ObjectShortName">dirty_way[7:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/i_dut/shared_way">
+         <obj_property name="ElementShortName">shared_way[7:0]</obj_property>
+         <obj_property name="ObjectShortName">shared_way[7:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/i_dut/busy">
+         <obj_property name="ElementShortName">busy[3:0]</obj_property>
+         <obj_property name="ObjectShortName">busy[3:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/i_dut/mshr_addr">
+         <obj_property name="ElementShortName">mshr_addr[2:0][55:0]</obj_property>
+         <obj_property name="ObjectShortName">mshr_addr[2:0][55:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/i_dut/mshr_addr_matches">
+         <obj_property name="ElementShortName">mshr_addr_matches[2:0]</obj_property>
+         <obj_property name="ObjectShortName">mshr_addr_matches[2:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/i_dut/mshr_index_matches">
+         <obj_property name="ElementShortName">mshr_index_matches[2:0]</obj_property>
+         <obj_property name="ObjectShortName">mshr_index_matches[2:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/i_dut/critical_word">
+         <obj_property name="ElementShortName">critical_word[63:0]</obj_property>
+         <obj_property name="ObjectShortName">critical_word[63:0]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/tb_ace/i_dut/critical_word_valid">
+         <obj_property name="ElementShortName">critical_word_valid</obj_property>
+         <obj_property name="ObjectShortName">critical_word_valid</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/i_dut/miss_req">
+         <obj_property name="ElementShortName">miss_req[2:0][141:0]</obj_property>
+         <obj_property name="ObjectShortName">miss_req[2:0][141:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/i_dut/miss_gnt">
+         <obj_property name="ElementShortName">miss_gnt[2:0]</obj_property>
+         <obj_property name="ObjectShortName">miss_gnt[2:0]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/tb_ace/i_dut/miss_write_done">
+         <obj_property name="ElementShortName">miss_write_done</obj_property>
+         <obj_property name="ObjectShortName">miss_write_done</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/i_dut/active_serving">
+         <obj_property name="ElementShortName">active_serving[2:0]</obj_property>
+         <obj_property name="ObjectShortName">active_serving[2:0]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/tb_ace/i_dut/flushing">
+         <obj_property name="ElementShortName">flushing</obj_property>
+         <obj_property name="ObjectShortName">flushing</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/tb_ace/i_dut/serving_amo">
+         <obj_property name="ElementShortName">serving_amo</obj_property>
+         <obj_property name="ObjectShortName">serving_amo</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/i_dut/serving_amo_addr">
+         <obj_property name="ElementShortName">serving_amo_addr[63:0]</obj_property>
+         <obj_property name="ObjectShortName">serving_amo_addr[63:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/i_dut/bypass_gnt">
+         <obj_property name="ElementShortName">bypass_gnt[2:0]</obj_property>
+         <obj_property name="ObjectShortName">bypass_gnt[2:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/i_dut/bypass_valid">
+         <obj_property name="ElementShortName">bypass_valid[2:0]</obj_property>
+         <obj_property name="ObjectShortName">bypass_valid[2:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/i_dut/bypass_data">
+         <obj_property name="ElementShortName">bypass_data[2:0][63:0]</obj_property>
+         <obj_property name="ObjectShortName">bypass_data[2:0][63:0]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/tb_ace/i_dut/invalidate">
+         <obj_property name="ElementShortName">invalidate</obj_property>
+         <obj_property name="ObjectShortName">invalidate</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/i_dut/invalidate_addr">
+         <obj_property name="ElementShortName">invalidate_addr[63:0]</obj_property>
+         <obj_property name="ObjectShortName">invalidate_addr[63:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/i_dut/req_ram">
+         <obj_property name="ElementShortName">req_ram[7:0]</obj_property>
+         <obj_property name="ObjectShortName">req_ram[7:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/i_dut/addr_ram">
+         <obj_property name="ElementShortName">addr_ram[11:0]</obj_property>
+         <obj_property name="ObjectShortName">addr_ram[11:0]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/tb_ace/i_dut/we_ram">
+         <obj_property name="ElementShortName">we_ram</obj_property>
+         <obj_property name="ObjectShortName">we_ram</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/i_dut/wdata_ram">
+         <obj_property name="ElementShortName">wdata_ram</obj_property>
+         <obj_property name="ObjectShortName">wdata_ram</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/i_dut/rdata_ram">
+         <obj_property name="ElementShortName">rdata_ram[7:0]</obj_property>
+         <obj_property name="ObjectShortName">rdata_ram[7:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/i_dut/be_ram">
+         <obj_property name="ElementShortName">be_ram</obj_property>
+         <obj_property name="ObjectShortName">be_ram</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/i_dut/be_valid_dirty_ram">
+         <obj_property name="ElementShortName">be_valid_dirty_ram[7:0]</obj_property>
+         <obj_property name="ObjectShortName">be_valid_dirty_ram[7:0]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/tb_ace/i_dut/miss_handler_busy">
+         <obj_property name="ElementShortName">miss_handler_busy</obj_property>
+         <obj_property name="ObjectShortName">miss_handler_busy</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/i_dut/readshared_done">
+         <obj_property name="ElementShortName">readshared_done</obj_property>
+         <obj_property name="ObjectShortName">readshared_done</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/i_dut/updating_cache">
+         <obj_property name="ElementShortName">updating_cache[2:0]</obj_property>
+         <obj_property name="ObjectShortName">updating_cache[2:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/i_dut/dirty_wdata">
+         <obj_property name="ElementShortName">dirty_wdata[7:0]</obj_property>
+         <obj_property name="ObjectShortName">dirty_wdata[7:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/i_dut/dirty_rdata">
+         <obj_property name="ElementShortName">dirty_rdata[7:0]</obj_property>
+         <obj_property name="ObjectShortName">dirty_rdata[7:0]</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject type="group" fp_name="group1708">
+      <obj_property name="label">request_scheduler</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject type="logic" fp_name="/tb_ace/i_request_scheduler/clk_i">
+         <obj_property name="ElementShortName">clk_i</obj_property>
+         <obj_property name="ObjectShortName">clk_i</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/tb_ace/i_request_scheduler/rst_ni">
+         <obj_property name="ElementShortName">rst_ni</obj_property>
+         <obj_property name="ObjectShortName">rst_ni</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/tb_ace/i_request_scheduler/check_done_i">
+         <obj_property name="ElementShortName">check_done_i</obj_property>
+         <obj_property name="ObjectShortName">check_done_i</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/i_request_scheduler/req_ports_i">
+         <obj_property name="ElementShortName">req_ports_i[2:0]</obj_property>
+         <obj_property name="ObjectShortName">req_ports_i[2:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/i_request_scheduler/req_ports_o">
+         <obj_property name="ElementShortName">req_ports_o[2:0]</obj_property>
+         <obj_property name="ObjectShortName">req_ports_o[2:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/i_request_scheduler/snoop_req_o">
+         <obj_property name="ElementShortName">snoop_req_o</obj_property>
+         <obj_property name="ObjectShortName">snoop_req_o</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/i_request_scheduler/snoop_resp_i">
+         <obj_property name="ElementShortName">snoop_resp_i</obj_property>
+         <obj_property name="ObjectShortName">snoop_resp_i</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/i_request_scheduler/active_port">
+         <obj_property name="ElementShortName">active_port[2:0]</obj_property>
+         <obj_property name="ObjectShortName">active_port[2:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/i_request_scheduler/state_req">
+         <obj_property name="ElementShortName">state_req[31:0]</obj_property>
+         <obj_property name="ObjectShortName">state_req[31:0]</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject type="group" fp_name="group365">
+      <obj_property name="label">checker</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject type="logic" fp_name="/tb_ace/i_checker/clk_i">
+         <obj_property name="ElementShortName">clk_i</obj_property>
+         <obj_property name="ObjectShortName">clk_i</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/tb_ace/i_checker/rst_ni">
+         <obj_property name="ElementShortName">rst_ni</obj_property>
+         <obj_property name="ObjectShortName">rst_ni</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/tb_ace/i_checker/check_done_o">
+         <obj_property name="ElementShortName">check_done_o</obj_property>
+         <obj_property name="ObjectShortName">check_done_o</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/tb_ace/i_checker/start_transaction">
+         <obj_property name="ElementShortName">start_transaction</obj_property>
+         <obj_property name="ObjectShortName">start_transaction</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/i_checker/req_ports_i">
+         <obj_property name="ElementShortName">req_ports_i[2:0]</obj_property>
+         <obj_property name="ObjectShortName">req_ports_i[2:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/i_checker/req_ports_o">
+         <obj_property name="ElementShortName">req_ports_o[2:0]</obj_property>
+         <obj_property name="ObjectShortName">req_ports_o[2:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/i_checker/axi_data_o">
+         <obj_property name="ElementShortName">axi_data_o</obj_property>
+         <obj_property name="ObjectShortName">axi_data_o</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/i_checker/axi_data_i">
+         <obj_property name="ElementShortName">axi_data_i</obj_property>
+         <obj_property name="ObjectShortName">axi_data_i</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/i_checker/axi_bypass_o">
+         <obj_property name="ElementShortName">axi_bypass_o</obj_property>
+         <obj_property name="ObjectShortName">axi_bypass_o</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/i_checker/axi_bypass_i">
+         <obj_property name="ElementShortName">axi_bypass_i</obj_property>
+         <obj_property name="ObjectShortName">axi_bypass_i</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/i_checker/snoop_req_i">
+         <obj_property name="ElementShortName">snoop_req_i</obj_property>
+         <obj_property name="ObjectShortName">snoop_req_i</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/i_checker/snoop_resp_o">
+         <obj_property name="ElementShortName">snoop_resp_o</obj_property>
+         <obj_property name="ObjectShortName">snoop_resp_o</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/i_checker/lfsr">
+         <obj_property name="ElementShortName">lfsr[7:0]</obj_property>
+         <obj_property name="ObjectShortName">lfsr[7:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/i_checker/current_req">
+         <obj_property name="ElementShortName">current_req</obj_property>
+         <obj_property name="ObjectShortName">current_req</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/i_checker/target_way">
+         <obj_property name="ElementShortName">target_way[2:0]</obj_property>
+         <obj_property name="ObjectShortName">target_way[2:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/i_checker/valid_v">
+         <obj_property name="ElementShortName">valid_v[7:0]</obj_property>
+         <obj_property name="ObjectShortName">valid_v[7:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/i_checker/dirty_v">
+         <obj_property name="ElementShortName">dirty_v[7:0]</obj_property>
+         <obj_property name="ObjectShortName">dirty_v[7:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/i_checker/shared_v">
+         <obj_property name="ElementShortName">shared_v[7:0]</obj_property>
+         <obj_property name="ObjectShortName">shared_v[7:0]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/tb_ace/i_checker/aceIsShared">
+         <obj_property name="ElementShortName">aceIsShared</obj_property>
+         <obj_property name="ObjectShortName">aceIsShared</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/tb_ace/i_checker/acePassDirty">
+         <obj_property name="ElementShortName">acePassDirty</obj_property>
+         <obj_property name="ObjectShortName">acePassDirty</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/i_checker/cache_valid_bin">
+         <obj_property name="ElementShortName">cache_valid_bin[255:0][7:0]</obj_property>
+         <obj_property name="ObjectShortName">cache_valid_bin[255:0][7:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/i_checker/read_bin">
+         <obj_property name="ElementShortName">read_bin[7:0][7:0]</obj_property>
+         <obj_property name="ObjectShortName">read_bin[7:0][7:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/i_checker/write_bin">
+         <obj_property name="ElementShortName">write_bin[7:0][7:0]</obj_property>
+         <obj_property name="ObjectShortName">write_bin[7:0][7:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/i_checker/snoop_bin">
+         <obj_property name="ElementShortName">snoop_bin[7:0][7:0]</obj_property>
+         <obj_property name="ObjectShortName">snoop_bin[7:0][7:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/i_checker/total_requests">
+         <obj_property name="ElementShortName">total_requests[31:0]</obj_property>
+         <obj_property name="ObjectShortName">total_requests[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/i_checker/snoop_requests">
+         <obj_property name="ElementShortName">snoop_requests[31:0]</obj_property>
+         <obj_property name="ObjectShortName">snoop_requests[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/i_checker/read_requests">
+         <obj_property name="ElementShortName">read_requests[31:0]</obj_property>
+         <obj_property name="ObjectShortName">read_requests[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/i_checker/write_requests">
+         <obj_property name="ElementShortName">write_requests[31:0]</obj_property>
+         <obj_property name="ObjectShortName">write_requests[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/i_checker/cacheable_read_requests">
+         <obj_property name="ElementShortName">cacheable_read_requests[31:0]</obj_property>
+         <obj_property name="ObjectShortName">cacheable_read_requests[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/i_checker/cacheable_write_requests">
+         <obj_property name="ElementShortName">cacheable_write_requests[31:0]</obj_property>
+         <obj_property name="ObjectShortName">cacheable_write_requests[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/i_checker/shareable_read_requests">
+         <obj_property name="ElementShortName">shareable_read_requests[31:0]</obj_property>
+         <obj_property name="ObjectShortName">shareable_read_requests[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/i_checker/shareable_write_requests">
+         <obj_property name="ElementShortName">shareable_write_requests[31:0]</obj_property>
+         <obj_property name="ObjectShortName">shareable_write_requests[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/i_checker/valid_read_requests">
+         <obj_property name="ElementShortName">valid_read_requests[31:0]</obj_property>
+         <obj_property name="ObjectShortName">valid_read_requests[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/i_checker/valid_write_requests">
+         <obj_property name="ElementShortName">valid_write_requests[31:0]</obj_property>
+         <obj_property name="ObjectShortName">valid_write_requests[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/i_checker/dirty_read_requests">
+         <obj_property name="ElementShortName">dirty_read_requests[31:0]</obj_property>
+         <obj_property name="ObjectShortName">dirty_read_requests[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/i_checker/dirty_write_requests">
+         <obj_property name="ElementShortName">dirty_write_requests[31:0]</obj_property>
+         <obj_property name="ObjectShortName">dirty_write_requests[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/i_checker/shared_read_requests">
+         <obj_property name="ElementShortName">shared_read_requests[31:0]</obj_property>
+         <obj_property name="ObjectShortName">shared_read_requests[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/i_checker/shared_write_requests">
+         <obj_property name="ElementShortName">shared_write_requests[31:0]</obj_property>
+         <obj_property name="ObjectShortName">shared_write_requests[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/i_checker/cleaninvalid_snoop_requests">
+         <obj_property name="ElementShortName">cleaninvalid_snoop_requests[31:0]</obj_property>
+         <obj_property name="ObjectShortName">cleaninvalid_snoop_requests[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/i_checker/readunique_snoop_requests">
+         <obj_property name="ElementShortName">readunique_snoop_requests[31:0]</obj_property>
+         <obj_property name="ObjectShortName">readunique_snoop_requests[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/i_checker/readshared_snoop_requests">
+         <obj_property name="ElementShortName">readshared_snoop_requests[31:0]</obj_property>
+         <obj_property name="ObjectShortName">readshared_snoop_requests[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/i_checker/readonce_snoop_requests">
+         <obj_property name="ElementShortName">readonce_snoop_requests[31:0]</obj_property>
+         <obj_property name="ObjectShortName">readonce_snoop_requests[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/i_checker/valid_cleaninvalid_snoop_requests">
+         <obj_property name="ElementShortName">valid_cleaninvalid_snoop_requests[31:0]</obj_property>
+         <obj_property name="ObjectShortName">valid_cleaninvalid_snoop_requests[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/i_checker/valid_readunique_snoop_requests">
+         <obj_property name="ElementShortName">valid_readunique_snoop_requests[31:0]</obj_property>
+         <obj_property name="ObjectShortName">valid_readunique_snoop_requests[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/i_checker/valid_readshared_snoop_requests">
+         <obj_property name="ElementShortName">valid_readshared_snoop_requests[31:0]</obj_property>
+         <obj_property name="ObjectShortName">valid_readshared_snoop_requests[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/i_checker/valid_readonce_snoop_requests">
+         <obj_property name="ElementShortName">valid_readonce_snoop_requests[31:0]</obj_property>
+         <obj_property name="ObjectShortName">valid_readonce_snoop_requests[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/i_checker/dirty_cleaninvalid_snoop_requests">
+         <obj_property name="ElementShortName">dirty_cleaninvalid_snoop_requests[31:0]</obj_property>
+         <obj_property name="ObjectShortName">dirty_cleaninvalid_snoop_requests[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/i_checker/dirty_readunique_snoop_requests">
+         <obj_property name="ElementShortName">dirty_readunique_snoop_requests[31:0]</obj_property>
+         <obj_property name="ObjectShortName">dirty_readunique_snoop_requests[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/i_checker/dirty_readshared_snoop_requests">
+         <obj_property name="ElementShortName">dirty_readshared_snoop_requests[31:0]</obj_property>
+         <obj_property name="ObjectShortName">dirty_readshared_snoop_requests[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/i_checker/dirty_readonce_snoop_requests">
+         <obj_property name="ElementShortName">dirty_readonce_snoop_requests[31:0]</obj_property>
+         <obj_property name="ObjectShortName">dirty_readonce_snoop_requests[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/i_checker/shared_cleaninvalid_snoop_requests">
+         <obj_property name="ElementShortName">shared_cleaninvalid_snoop_requests[31:0]</obj_property>
+         <obj_property name="ObjectShortName">shared_cleaninvalid_snoop_requests[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/i_checker/shared_readunique_snoop_requests">
+         <obj_property name="ElementShortName">shared_readunique_snoop_requests[31:0]</obj_property>
+         <obj_property name="ObjectShortName">shared_readunique_snoop_requests[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/i_checker/shared_readshared_snoop_requests">
+         <obj_property name="ElementShortName">shared_readshared_snoop_requests[31:0]</obj_property>
+         <obj_property name="ObjectShortName">shared_readshared_snoop_requests[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_ace/i_checker/shared_readonce_snoop_requests">
+         <obj_property name="ElementShortName">shared_readonce_snoop_requests[31:0]</obj_property>
+         <obj_property name="ObjectShortName">shared_readonce_snoop_requests[31:0]</obj_property>
+      </wvobject>
+   </wvobject>
+</wave_config>

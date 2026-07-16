@@ -1,0 +1,8 @@
+make -C tests VERILATE=0 NB_CORES=2 sanity
+make[1]: Entering directory '/home/igorcintra13/culsans_questa/tests'
+make -C unit clean sanity
+make -C ../modules/cva6/corev_apu/tb/tb_wb_dcache clean simc toplevel=tb_ace_direct
+make -C ../modules/cva6/corev_apu/tb/tb_wb_dcache clean simc toplevel=tb_ace
+make -C integration clean all TEST=read_cache_share NB_CORES=4
+printf "\nsanity check \033[32mPASSED\033[0m\n\n"
+make[1]: Leaving directory '/home/igorcintra13/culsans_questa/tests'

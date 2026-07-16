@@ -50,10 +50,10 @@ endif
 K := $(foreach exec,$(EXECUTABLES),\
         $(if $(shell which $(exec)),some string,$(error "No $(exec) in PATH")))
 
-GCC_VERSION := $(shell gcc -dumpversion)
-ifneq ($(GCC_VERSION), 8)
-$(error "Wrong gcc version - try "scl enable devtoolset-8 bash")
-endif
+#GCC_VERSION := $(shell gcc -dumpversion)
+#ifneq ($(GCC_VERSION), 8)
+#$(error "Wrong gcc version - try "scl enable devtoolset-8 bash")
+#endif
 
 # Check number of cores
 NB_CORES ?= 2

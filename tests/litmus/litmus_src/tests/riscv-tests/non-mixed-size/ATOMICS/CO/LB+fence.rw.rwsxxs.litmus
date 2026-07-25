@@ -1,0 +1,19 @@
+RISCV LB+fence.rw.rwsxxs
+"Fence.rw.rwsRWXX RfeXX Fence.rw.rwsRWXX RfeXX"
+Cycle=RfeXX Fence.rw.rwsRWXX RfeXX Fence.rw.rwsRWXX
+Relax=RfeXX
+Safe=Fence.rw.rwsRW
+Generator=diy7 (version 7.56.2)
+Com=Rf Rf
+Orig=Fence.rw.rwsRWXX RfeXX Fence.rw.rwsRWXX RfeXX
+{
+0:x5=x; 0:x8=1;
+1:x5=x; 1:x8=2;
+}
+ P0                | P1                ;
+ lr.w x6,0(x5)     | lr.w x6,0(x5)     ;
+ sc.w x7,x6,0(x5)  | sc.w x7,x6,0(x5)  ;
+ fence rw,rw       | fence rw,rw       ;
+ lr.w x9,0(x5)     | lr.w x9,0(x5)     ;
+ sc.w x10,x8,0(x5) | sc.w x10,x8,0(x5) ;
+exists (x=0 /\ 0:x10=0 /\ 0:x7=0 /\ 0:x6=0 /\ 0:x9=0 /\ 1:x10=0 /\ 1:x7=0 /\ 1:x6=0 /\ 1:x9=0)

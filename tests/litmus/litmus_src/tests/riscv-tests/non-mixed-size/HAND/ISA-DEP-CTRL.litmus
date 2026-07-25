@@ -1,0 +1,20 @@
+RISCV ISA-DEP-CTRL
+
+""
+
+{
+    0:s0=x; 0:s1=y;
+ 1:s0=x; 1:s1=y; 1:s2=z;
+}
+
+
+  P0         | P1             ;
+ ld a0,0(s1) | li t1,1        ;
+ fence r,rw  | ld a0,0(s0)    ;
+ li t1,1     | bne a0,zero,NEXT ; 
+ sd t1,0(s0) | sd t1,0(s2)    ;
+             |NEXT:           ;
+             | sd t1,0(s1)    ;
+exists (0:a0=1 /\ 1:a0=1)
+
+ 

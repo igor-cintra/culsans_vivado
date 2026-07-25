@@ -1,1 +1,47 @@
-*.sublime-*
+# ==========================================
+# Vivado - Arquivos de Log e Jornal
+# ==========================================
+*.jou
+*.log
+*.str
+*.pb
+hs_err_pid*.log
+
+# ==========================================
+# Vivado - Diretórios Gerados e Caches
+# ==========================================
+*.cache/
+*.hw/
+*.sim/
+*.runs/
+*.ip_user_files/
+.Xil/
+
+# ==========================================
+# Vivado - Checkpoints e Binários (Arquivos Pesados)
+# ==========================================
+*.dcp
+*.bit
+*.bin
+*.mmi
+*.ltx
+*.xsa
+*.pdi
+
+# ==========================================
+# Questa / ModelSim - Simulação e Compilação
+# ==========================================
+work/
+*.wdb
+*.wlf
+*.ucdb
+transcript
+modelsim.ini
+*.vstf
+
+# ==========================================
+# Arquivos de Sistema Operacional (Opcional, mas recomendado)
+# ==========================================
+.DS_Store
+Thumbs.db*.sublime-*
+*.wdb

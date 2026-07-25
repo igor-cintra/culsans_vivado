@@ -1,0 +1,12 @@
+RISCV C-Will03
+""
+{
+0:x3=x; 0:x4=y;
+1:x3=x; 1:x4=y;
+}
+ P0                       | P1          ;
+ fence rw,rw              | li x1,1     ;
+ li x1,1                  | sw x1,0(x3) ;
+ amoadd.w.aq t3,x1,(x4)   | fence rw,rw ;
+ lw x2,0(x3)              | lw x2,0(x4) ;
+exists (0:x2=0 /\ 1:x2=0)

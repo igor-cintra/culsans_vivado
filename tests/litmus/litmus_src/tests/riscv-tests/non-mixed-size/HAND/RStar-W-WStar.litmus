@@ -1,0 +1,13 @@
+RISCV RStar-W-WStar
+""
+{
+0:x5=x;
+}
+ P0               ;
+ ori x7,zero,1      ;
+ lr.w x6,0(x5)    ;
+ ori x9,zero,2      ;
+ sw  x9,0(x5)     ;
+ sc.w x8,x7,0(x5) ;
+exists
+  (0:x6=0 /\ 0:x8=0 /\ x=1 /\ 0:x8=0 x=2)

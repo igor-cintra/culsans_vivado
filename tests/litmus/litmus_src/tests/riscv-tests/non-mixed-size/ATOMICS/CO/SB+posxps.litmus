@@ -1,0 +1,17 @@
+RISCV SB+posxps
+"PosWRXP FrePX PosWRXP FrePX"
+Cycle=FrePX PosWRXP FrePX PosWRXP
+Relax=FrePX
+Safe=PosWR
+Generator=diy7 (version 7.56.2)
+Com=Fr Fr
+Orig=PosWRXP FrePX PosWRXP FrePX
+{
+0:x5=x; 0:x6=1;
+1:x5=x; 1:x6=2;
+}
+ P0               | P1               ;
+ lr.w x7,0(x5)    | lr.w x7,0(x5)    ;
+ sc.w x8,x6,0(x5) | sc.w x8,x6,0(x5) ;
+ lw x9,0(x5)      | lw x9,0(x5)      ;
+exists (x=0 /\ 0:x8=0 /\ 0:x7=0 /\ 0:x9=0 /\ 1:x8=0 /\ 1:x7=0 /\ 1:x9=0)

@@ -1,0 +1,16 @@
+RISCV LB+poss
+"PosRW Rfe PosRW Rfe"
+Cycle=Rfe PosRW Rfe PosRW
+Relax=
+Safe=Rfe PosRW
+Generator=diy7 (version 7.56.2)
+Com=Rf Rf
+Orig=PosRW Rfe PosRW Rfe
+{
+0:x6=x; 0:x7=1;
+1:x6=x; 1:x7=2;
+}
+ P0          | P1          ;
+ lw x5,0(x6) | lw x5,0(x6) ;
+ sw x7,0(x6) | sw x7,0(x6) ;
+exists (x=0 /\ 0:x5=0 /\ 1:x5=0)

@@ -1,0 +1,17 @@
+RISCV R+pos+posxp
+"PosWW CoePX PosWRXP Fre"
+Cycle=Fre PosWW CoePX PosWRXP
+Relax=CoePX
+Safe=Fre PosWW PosWR
+Generator=diy7 (version 7.56.2)
+Com=Co Fr
+Orig=PosWW CoePX PosWRXP Fre
+{
+0:x5=1; 0:x6=x; 0:x7=2;
+1:x5=x; 1:x6=3;
+}
+ P0          | P1               ;
+ sw x5,0(x6) | lr.w x7,0(x5)    ;
+ sw x7,0(x6) | sc.w x8,x6,0(x5) ;
+             | lw x9,0(x5)      ;
+exists (x=0 /\ 1:x8=0 /\ 1:x7=0 /\ 1:x9=0)

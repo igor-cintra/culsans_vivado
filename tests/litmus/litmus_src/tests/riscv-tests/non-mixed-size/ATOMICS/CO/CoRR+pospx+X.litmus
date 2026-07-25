@@ -1,0 +1,17 @@
+RISCV CoRR+pospx+X
+"RfeXP PosRRPX FreXX"
+Cycle=PosRRPX FreXX RfeXP
+Relax=FreXX
+Safe=Rfe PosRR
+Generator=diy7 (version 7.56.2)
+Com=Rf Fr
+Orig=RfeXP PosRRPX FreXX
+{
+0:x5=x; 0:x6=1;
+1:x6=x;
+}
+ P0               | P1               ;
+ lr.w x7,0(x5)    | lw x5,0(x6)      ;
+ sc.w x8,x6,0(x5) | lr.w x7,0(x6)    ;
+                  | sc.w x8,x7,0(x6) ;
+exists (x=0 /\ 0:x8=0 /\ 0:x7=0 /\ 1:x8=0 /\ 1:x5=0 /\ 1:x7=0)

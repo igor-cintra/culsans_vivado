@@ -1,0 +1,15 @@
+RISCV ISA-S-DEP-ADDR-SUCCESS
+
+""
+{
+1:s0=p; 1:s1=y; 0:s2=x;
+0:s0=p; 0:s1=y;
+}
+
+ P0          | P1                ;
+ li t1,2     | ld a0,0(s0)       ;
+ sw t1,0(s1) | lr.w a1,0(a0)     ;
+ fence w,w   | li t1,1           ;
+ sd s2,0(s0) | sc.w a2,t1,0(a0)  ;
+             | sw a2,0(s1)       ;
+exists (1:a0=x /\ y=2)

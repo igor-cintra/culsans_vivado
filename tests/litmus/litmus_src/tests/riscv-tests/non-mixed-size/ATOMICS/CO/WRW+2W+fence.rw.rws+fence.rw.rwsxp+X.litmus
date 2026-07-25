@@ -1,0 +1,19 @@
+RISCV WRW+2W+fence.rw.rws+fence.rw.rwsxp+X
+"RfeXP Fence.rw.rwsRW CoePX Fence.rw.rwsWWXP CoePX"
+Cycle=Fence.rw.rwsRW CoePX Fence.rw.rwsWWXP CoePX RfeXP
+Relax=CoePX
+Safe=Rfe Fence.rw.rwsWW Fence.rw.rwsRW
+Generator=diy7 (version 7.56.2)
+Com=Rf Co Co
+Orig=RfeXP Fence.rw.rwsRW CoePX Fence.rw.rwsWWXP CoePX
+{
+0:x5=x; 0:x6=1;
+1:x6=x; 1:x7=2;
+2:x5=x; 2:x6=3; 2:x9=4;
+}
+ P0               | P1          | P2               ;
+ lr.w x7,0(x5)    | lw x5,0(x6) | lr.w x7,0(x5)    ;
+ sc.w x8,x6,0(x5) | fence rw,rw | sc.w x8,x6,0(x5) ;
+                  | sw x7,0(x6) | fence rw,rw      ;
+                  |             | sw x9,0(x5)      ;
+exists (x=0 /\ 0:x8=0 /\ 0:x7=0 /\ 1:x5=0 /\ 2:x8=0 /\ 2:x7=0)

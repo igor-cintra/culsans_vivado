@@ -1,110 +1,30 @@
-# Culsans - tightly-coupled cache coherence unit using the ACE protocol
+# Culsans - tightly-coupled cache coherence unit using the ACE protocol (Vivado XSIM Fork)
 
+> **Aviso de Fork:** Este repositório é um fork do projeto original [planvtech/culsans](https://github.com/planvtech/culsans). O objetivo deste trabalho é propor e desenvolver um fork do projeto Culsans, reestruturando sua infraestrutura de simulação para suportar nativamente a ferramenta AMD/Xilinx Vivado. A escolha do Vivado justifica-se por fornecer suporte integral e gratuito às bibliotecas UVM, contornando a restrição de licenciamento comercial da feature de randomização presente na edição gratuita do QuestaSim.
 
 ## Introduction
 
-Aim of this project is the development of a tightly-coupled cache coherence unit for a multicore processor based on
-[CVA6](https://github.com/openhwgroup/cva6). Like the ancient god [^1], its responsibilities are to maintain order
-(and data consistency) among the memory accesses performed by the 2~4 CPUs which are part of the system.
+Aim of this project is the development of a tightly-coupled cache coherence unit for a multicore processor based on [CVA6](https://github.com/openhwgroup/cva6). Like the ancient god, its responsibilities are to maintain order (and data consistency) among the memory accesses performed by the 2~4 CPUs which are part of the system.
 
-[^1]: [Culsans](https://en.wikipedia.org/wiki/Culsans) – the Etruscan version of [Janus](https://en.wikipedia.org/wiki/Janus),
-the two-faced and also four-faced god, god of the first and last of the year, of the beginning and the end, of the
-cardinal points and thus of order in general.
+## Principais Modificações e Correções (Vivado Integration)
 
+A integração do simulador Vivado (XSIM) ao ecossistema Culsans exigiu a reestruturação do fluxo de compilação e verificação original. As seguintes adaptações foram implementadas neste repositório:
+
+* Os prefixos SSH no arquivo `.gitmodules` foram substituídos por URLs HTTPS. Essa alteração garante a automação da resolução de dependências em ambientes sem chaves criptográficas pré-configuradas.
+* A verificação de versão que abortava a execução caso o compilador não fosse estritamente a versão 8 do GCC foi desativada. Isso permitiu a compilação com toolchains atualizadas, como o GCC 13.2.
+* Um script de automação em Python (`extract_sources.py`) foi desenvolvido para converter automaticamente as flags proprietárias do QuestaSim para a sintaxe nativa do Vivado.
+* Foi aplicada uma refatoração pontual no pacote de testes do cache (`tb_dcache_pkg.sv`), renomeando a função problemática `empty` para `is_empty`. Esta adequação semântica contornou a falha do parser de resolução de nomes inerente à ferramenta da AMD/Xilinx.
+* Uma condição de corrida (race condition) no arquivo `dcache_checker.sv` foi corrigida com a substituição da macro `WAIT_SIG` por um laço `while` que aguarda a conjunção dos sinais `cr_valid` e `cr_ready`, garantindo a aderência ao protocolo de handshake bidirecional.
+* Uma segunda condição de corrida foi mitigada através da inserção de um laço de espera no escalonador (`request_scheduler.sv`), forçando a espera pela disponibilidade do verificador antes da injeção de uma nova transação.
+* Uma macro privada `WAIT_DIRECT`, contendo um atraso procedural de `#0.1ps`, foi criada exclusivamente para o testbench `tb_ace_direct`. Essa abordagem de isolamento de macros garantiu que cada ambiente de verificação operasse com a sincronização de delta-cycles adequada, corrigindo o travamento da simulação durante a fase de aquecimento.
+* Incompatibilidades na tipagem de mailboxes parametrizadas nos testes unitários (`culsans_tb`) foram corrigidas através da criação de aliases de tipo, garantindo a identidade nominal exigida pelo Vivado.
+
+### Resultados de Verificação
+
+* O testbench `tb_ace` executou de forma ininterrupta e concluiu com sucesso na rodada 44.056, alcançando 100% de cobertura funcional. 
+* O ambiente processou um total de 44.057 transações, com uma taxa de acerto de cache de aproximadamente 89% para leituras.
 
 ## Getting started
 
-```
-git clone https://github.com/planvtech/culsans.git --recursive
-```
-
-Useful documentation:
-
-- [CVA6's coherent WB cache](https://github.com/planvtech/cva6/blob/culsans_pulp/docs/03_cva6_design/wb_cache_with_coherence_support.md)
-- [ACE Interconnector](https://github.com/planvtech/ace/blob/pulp/doc/ace_ccu_top.md)
-- Testing (see below)
-
-### Synthesis on FPGA (Genesys2)
-
-```
-make fpga
-```
-
-The top level file for FPGA synthesis is [`rtl/src/culsans_xilinx.sv`](rtl/src/culsans_xilinx.sv)
-
-
-### SD image generation
-
-Make sure all dependencies specified in [`cva6-sdk`](https://github.com/planvtech/cva6-sdk/blob/culsans_pulp/README.md) are fulfilled.
-
-```
-make sdk
-```
-
-Then follow the instruction in [`cva6-sdk`](https://github.com/planvtech/cva6-sdk/blob/culsans_pulp/README.md) to copy the generated image to the SD.
-
-
-### RTL tests
-
-Sanity check
-
-```
-make sanity-tests
-```
-
-Regression tests
-
-```
-make test
-```
-
-
-## Verification
-
-
-### Culsans Integration Test Suite (CITS)
-
-The CITS is a test platform that tests the integration of components of Culsans.
-
-There are two layers to the tests.
-
-There is c code self testing. This is achieved by c code within the test testing what it expects it has effected in the
-memory. If it fails, it exits early with a code indicative of the core and cacheline that incurred the problem.
-
-The second (optional) layer is that where an external parser inspects the logs generated by the tests and compares them to an
-expected sequence. This layer is not further described here.
-
-
-#### Running tests
-
-Tests are run in the [`tests/integration`](tests/integration) directory. All commands below are executed in this directory.
-
-To run a test in the CITS, type
-
-```
-make -C testlist/<test_name> all
-```
-
-To run a test in the CITS in a GUI, type
-
-```
-make GUI=1 -C testlist/<test_name> all
-```
-
-
-#### Adding tests
-
-A CITS test consists of a batch of files within the folder `testlist/<test_name>`. The folder should contain the following files:
-
-| File            | Description |
-|-----------------|-------------|
-| <test_name>.c/h | This file is the the actual test. See similar files in the CITS for an example of how to write one. |
-| main.c          | This file co-ordinates the core execution and calls the `test_name()` function. See the `main.c` files in the CITS for an example on how to write one. |
-| Makefile        | Symlink to `../../test_automation/Makefile` |
-| sim.tcl         | Symlink to `../../test_automation/sim.tcl` |
-
-The test function defined in <test_name>.c should be self-checking and call `exit(arg)` with arg > 0 if the test fails, otherwise `return 0`.
-
-## License
-
-The Culsans repository is released under Solderpad v0.51 (SHL-0.51) see [LICENSE](LICENSE)
+```bash
+git clone [https://github.com/igor-cintra/culsans_vivado.git](https://github.com/igor-cintra/culsans_vivado.git) --recursive

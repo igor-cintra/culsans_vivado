@@ -1,0 +1,4 @@
+=== way_inp_t ===
+=== scoreboard_entry_t ===
+=== bp_resolve_t ===
+=== priv_lvl_t ===

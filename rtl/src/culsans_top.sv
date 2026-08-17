@@ -166,7 +166,10 @@ module culsans_top #(
   // SiFive's SimDTM Module
   // Converts to DPI calls
   logic [1:0] debug_req_bits_op;
-  assign dmi_req.op = dm::dtm_op_e'(debug_req_bits_op);
+  //assign dmi_req.op = dm::dtm_op_e'(debug_req_bits_op);
+  always_comb begin
+      dmi_req.op = dm::dtm_op_e'(debug_req_bits_op);
+  end
 
   if (InclSimDTM) begin
     SimDTM i_SimDTM (
@@ -670,7 +673,8 @@ module culsans_top #(
     MaxMstTrans: 2, // Probably requires update
     MaxSlvTrans: 2, // Probably requires update
     FallThrough: 1'b0,
-    LatencyMode: axi_pkg::CUT_ALL_PORTS,
+    //LatencyMode: axi_pkg::CUT_ALL_PORTS,
+    LatencyMode: ace_pkg::ccu_latency_e'(axi_pkg::CUT_ALL_PORTS),
     AxiIdWidthSlvPorts: culsans_pkg::IdWidth,
     AxiIdUsedSlvPorts: culsans_pkg::IdWidth,
     UniqueIds: 1'b1,

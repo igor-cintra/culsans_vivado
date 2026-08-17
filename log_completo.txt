@@ -1,0 +1,1 @@
+-bash: ./run_vivado_integration.sh: Permission denied

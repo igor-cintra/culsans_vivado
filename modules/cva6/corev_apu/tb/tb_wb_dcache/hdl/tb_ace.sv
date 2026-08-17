@@ -164,7 +164,9 @@ module tb_ace import ariane_pkg::*; import std_cache_pkg::*; import tb_pkg::*; #
     axi_rand_slave_bypass = new( axi_bypass_dv );
     axi_rand_slave_data.reset();
     axi_rand_slave_bypass.reset();
+    $display("[%0t ns] [SYS] Aguardando sinal de reset (rst_ni)...", $time);
     @(posedge rst_ni);
+    $display("[%0t ns] [SYS] Reset desativado. Iniciando injeção de transações!", $time);
     fork
       axi_rand_slave_data.run();
       axi_rand_slave_bypass.run();

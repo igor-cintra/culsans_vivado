@@ -41,8 +41,8 @@ module culsans_tb
     initial assert (CachedSharedRegionLength > 0) else $error ("Got negative CachedSharedRegionLength");
 
     // TB signals
-    dcache_req_i_t [NB_CORES][DCACHE_PORTS] dcache_req_ports_i;
-    dcache_req_o_t [NB_CORES][DCACHE_PORTS] dcache_req_ports_o;
+    dcache_req_i_t [NB_CORES-1:0][DCACHE_PORTS-1:0] dcache_req_ports_i;
+    dcache_req_o_t [NB_CORES-1:0][DCACHE_PORTS-1:0] dcache_req_ports_o;
     logic                                   clk;
     logic                                   rst_n;
     logic                                   rtc;
@@ -98,7 +98,9 @@ module culsans_tb
         .SRAM_NUM_WORDS  ( NUM_WORDS    )
     ) dcache_chk;
 
-    // ACE mailboxes
+////////////////////////////////////////////////
+    //Substituição das mailboxes genéricas pelas fortemente tipadas    
+/*    // ACE mailboxes
     mailbox aw_mbx [NB_CORES];
     mailbox w_mbx  [NB_CORES];
     mailbox b_mbx  [NB_CORES];
@@ -108,7 +110,27 @@ module culsans_tb
     // Snoop mailboxes
     mailbox ac_mbx [NB_CORES];
     mailbox cd_mbx [NB_CORES];
-    mailbox cr_mbx [NB_CORES];
+    mailbox cr_mbx [NB_CORES];      */
+
+    // Alias para garantir a identidade tipográfica
+    typedef ace_monitor #(
+        .IW ( AxiIdWidth   ),
+        .AW ( AxiAddrWidth ),
+        .DW ( AxiDataWidth ),
+        .UW ( AxiUserWidth )
+    ) ace_mon_t;
+
+    // ACE mailboxes extraindo os tipos direto do alias
+    mailbox #(ace_mon_t::ax_ace_beat_t) aw_mbx [NB_CORES];
+    mailbox #(ace_mon_t::w_beat_t)      w_mbx  [NB_CORES];
+    mailbox #(ace_mon_t::b_beat_t)      b_mbx  [NB_CORES];
+    mailbox #(ace_mon_t::ax_ace_beat_t) ar_mbx [NB_CORES];
+    mailbox #(ace_mon_t::r_ace_beat_t)  r_mbx  [NB_CORES];
+
+    // Snoop mailboxes
+    mailbox #(snoop_test::ace_ac_beat #(.AW(AxiAddrWidth))) ac_mbx [NB_CORES];
+    mailbox #(snoop_test::ace_cd_beat #(.DW(AxiDataWidth))) cd_mbx [NB_CORES];
+    mailbox #(snoop_test::ace_cr_beat)                      cr_mbx [NB_CORES];
 
     //--------------------------------------------------------------------------
     // Clock & reset generation
@@ -148,6 +170,7 @@ module culsans_tb
         .StallRandomInput (STALL_RANDOM_DELAY),
         .StallRandomOutput(STALL_RANDOM_DELAY),
         .HasLLC           (HAS_LLC),
+        .HasLLC           (1'b0),
         .FixedDelayInput  (FIXED_AXI_DELAY),
         .FixedDelayOutput (FIXED_AXI_DELAY),
         .BootAddress      (culsans_pkg::DRAMBase + 64'h10_0000)
@@ -775,10 +798,14 @@ module culsans_tb
                                     fork
                                         automatic int         cc     = c;
                                         // target one 32 bit word inside the 128 bit cacheline
-                                        automatic int         offset = $urandom_range(3);
+                                        //automatic int         offset = $urandom_range(3);
+                                        automatic int         offset;
                                         // be is either 00001111 or 11110000 depending on offset
-                                        automatic logic [7:0] be     = 8'b00001111 << 4 * (offset % 2);
+                                        //automatic logic [7:0] be     = 8'b00001111 << 4 * (offset % 2);
+                                        automatic logic [7:0] be;
                                         begin
+                                            offset = $urandom_range(3);
+                                            be     = 8'b00001111 << (4 * (offset % 2));
                                             `WAIT_CYC(clk, $urandom_range(10))
                                             // write in one core while the others read
                                             if (cc == cid) begin
@@ -862,9 +889,12 @@ module culsans_tb
                             for (int i=0; i<rep_cnt; i++) begin
                                 for (int c=0; c < NB_CORES; c++) begin
                                     fork
+                                        //automatic int cc = c;
+                                        //automatic int sel = $urandom_range(3);
                                         automatic int cc = c;
-                                        automatic int sel = $urandom_range(3);
+                                        automatic int sel;
                                         begin
+                                            sel = $urandom_range(3);
                                             `WAIT_CYC(clk, $urandom_range(10))
                                             case (sel)
                                                 0 : begin // Wr Wr

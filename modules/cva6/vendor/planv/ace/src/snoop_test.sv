@@ -336,10 +336,13 @@ package snoop_test;
         automatic ace_ac_beat_t ace_ac_beat = new_rand_burst();
         rand_wait(AC_MIN_WAIT_CYCLES, AC_MAX_WAIT_CYCLES);
         drv.send_ac(ace_ac_beat);
+        $display("[%0t ns] [SNOOP AC] Pacote enviado! (ac_valid=1, ac_ready=1) | Endereço: 0x%h | Comando: %b", 
+         $time, ace_ac_beat.ac_addr, ace_ac_beat.ac_snoop);
       end
     endtask
 
     task recv_crs(ref logic ac_done);
+    $display("[%0t ns] [SNOOP CR] Testbench pronto (cr_ready=1). Aguardando cr_valid da DUT...", $time);
       while (!ac_done) begin
         automatic ace_cr_beat_t ace_cr_beat;
         automatic ace_cd_beat_t ace_cd_beat;
@@ -347,6 +350,8 @@ package snoop_test;
         drv.recv_cr(ace_cr_beat);
         if (!ace_cr_beat.cr_resp.error & ace_cr_beat.cr_resp.dataTransfer)
           drv.recv_cd(ace_cd_beat);
+        $display("[%0t ns] [SNOOP CR] Handshake CR concluído! Resposta da Cache (cr_resp): %b", 
+         $time, ace_cr_beat.cr_resp);
       end
     endtask
 
@@ -507,7 +512,13 @@ package snoop_test;
     typedef snoop_driver_t::ace_cr_beat_t ace_cr_beat_t;
 
     snoop_driver_t          drv;
-    mailbox ac_mbx = new, cd_mbx = new, cr_mbx = new;
+//**************************************************************************************************************
+    /*// MAILBOXES GENÉRICAS ORIGINAIS
+    mailbox ac_mbx = new, cd_mbx = new, cr_mbx = new; */
+
+    mailbox #(ace_ac_beat_t) ac_mbx = new();
+    mailbox #(ace_cd_beat_t) cd_mbx = new();
+    mailbox #(ace_cr_beat_t) cr_mbx = new();
 
     virtual SNOOP_BUS_DV #(
       .SNOOP_ADDR_WIDTH(AW),

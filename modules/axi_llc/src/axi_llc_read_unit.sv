@@ -96,15 +96,40 @@ module axi_llc_read_unit #(
   logic           meta_fifo_empty;
   logic           meta_fifo_pop;
 
-  // way_inp assignments
+//////////////////////////////////////////////////////////////////
+/*  // way_inp assignments
   assign way_inp_o = '{
     cache_unit: axi_llc_pkg::RChanUnit,
     way_ind:    desc_q.way_ind,
     line_addr:  desc_q.a_x_addr[(Cfg.ByteOffsetLength + Cfg.BlockOffsetLength)+:Cfg.IndexLength],
     blk_offset: desc_q.a_x_addr[ Cfg.ByteOffsetLength +: Cfg.BlockOffsetLength],
     default: '0
-  }; // other fields not needed, `we` is `1'b0.
+  }; // other fields not needed, `we` is `1'b0.   */
 
+  // way_inp assignments
+  way_inp_t way_inp_tmp;
+  always_comb begin
+    way_inp_tmp = way_inp_t'('0);
+
+    way_inp_tmp.cache_unit = axi_llc_pkg::RChanUnit;
+    way_inp_tmp.way_ind    = desc_q.way_ind;
+
+    way_inp_tmp.line_addr =
+        desc_q.a_x_addr[
+            (Cfg.ByteOffsetLength + Cfg.BlockOffsetLength)
+            +: Cfg.IndexLength
+        ];
+
+    way_inp_tmp.blk_offset =
+        desc_q.a_x_addr[
+            Cfg.ByteOffsetLength
+            +: Cfg.BlockOffsetLength
+        ];
+  end
+  assign way_inp_o = way_inp_tmp;
+
+  ////////////////////////////////////////////////////////////////////
+  
   // unlock assignment
   assign r_unlock_o = '{
     index:   desc_q.a_x_addr[(Cfg.ByteOffsetLength + Cfg.BlockOffsetLength)+:Cfg.IndexLength],
@@ -187,16 +212,36 @@ module axi_llc_read_unit #(
   assign r_chan_valid_o  = ~r_fifo_empty;
   assign r_fifo_pop      =  r_chan_ready_i & ~r_fifo_empty;
 
-  // R FIFO data assignment
+  //////////////////////////////////////////////////////
+/*  // R FIFO data assignment
   assign r_fifo_inp = r_chan_t'{
     id:   meta_fifo_outp.id,
     // Add data from the SRAM only if the response is ok.
     data: (meta_fifo_outp.resp inside {axi_pkg::RESP_OKAY}) ?
               way_out_i.data : data_t'(axi_llc_pkg::AxiLlcVersion),
-    resp: meta_fifo_outp.resp,
+    //resp: meta_fifo_outp.resp,
+    resp: axi_pkg::resp_t'(meta_fifo_outp.resp),          
     last: meta_fifo_outp.last,
     default: '0
-  };
+  };    */
+  // R FIFO data assignment
+  r_chan_t r_fifo_tmp;
+  always_comb begin
+    r_fifo_tmp = r_chan_t'('0);
+
+    r_fifo_tmp.id = meta_fifo_outp.id;
+
+    // Add data from the SRAM only if the response is ok.
+    r_fifo_tmp.data =
+        (meta_fifo_outp.resp inside {axi_pkg::RESP_OKAY})
+            ? way_out_i.data
+            : data_t'(axi_llc_pkg::AxiLlcVersion);
+
+    r_fifo_tmp.resp = axi_pkg::resp_t'(meta_fifo_outp.resp);
+    r_fifo_tmp.last = meta_fifo_outp.last;
+  end
+  assign r_fifo_inp = r_fifo_tmp;
+  ///////////////////////////////////////////////////////
 
   fifo_v3 #(
     .FALL_THROUGH ( 1'b0                                    ), // No fallthrough

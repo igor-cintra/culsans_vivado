@@ -1,0 +1,1 @@
+-L "work" "work.culsans_tb" -debug "typical" -s "work_snapshot" 

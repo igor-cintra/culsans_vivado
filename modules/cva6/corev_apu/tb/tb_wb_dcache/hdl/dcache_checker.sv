@@ -690,10 +690,10 @@ module dcache_checker import ariane_pkg::*; import std_cache_pkg::*; import tb_p
       aceIsShared = 1'b0;
       acePassDirty = 1'b0;
 
-      $display("[%0t] aguardando start transaction e clock", $time);
+      $display("[%0t] [CHECKER] aguardando start transaction e clock", $time);
       `WAIT_SIG(clk_i, start_transaction)
       //`WAIT_SIG(1, start_transaction)
-      $display("[%0t] start transaction e clock recebidos", $time);
+      $display("[%0t] [CHECKER] start transaction e clock recebidos", $time);
 
       if (current_req.req_type == SNOOP_REQ) begin
         // wait for the response
@@ -828,10 +828,11 @@ module dcache_checker import ariane_pkg::*; import std_cache_pkg::*; import tb_p
       end
       else begin
         round = round + 1;
-        $display("Rodada atual: %0d", round);
+        $display("[CHECKER] Rodada atual: %0d", round-1);
       end
 
       `WAIT_CYC(clk_i, 2)
+      $display("[%0t ns] [CHECKER] Todas as validações passaram. Subindo check_done_o para 1.", $time);
       check_done_o = 1'b1;
       `WAIT_CYC(clk_i, 1)
     end

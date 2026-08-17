@@ -535,7 +535,10 @@ module axi_riscv_lrsc #(
         .oup_data_valid_o   (b_status_oup_valid),
         .oup_gnt_o          (b_status_oup_gnt)
     );
-    assign b_status_oup_cmd = b_cmd_t'(b_status_oup_cmd_flat);
+    //assign b_status_oup_cmd = b_cmd_t'(b_status_oup_cmd_flat);
+    always_comb begin
+      b_status_oup_cmd = b_cmd_t'(b_status_oup_cmd_flat);
+    end
 
     // ID Queue to track in-flight writes.
     id_queue #(

@@ -515,6 +515,23 @@ module fpu_wrap import ariane_pkg::*; (
     assign fpu_operands[1] = operand_b;
     assign fpu_operands[2] = operand_c;
 
+    //---------------------------------------------------------
+    // Sinais tipados para workaround de compatibilidade do XSIM
+    //---------------------------------------------------------
+    fpnew_pkg::roundmode_e  rnd_mode_cast;
+    fpnew_pkg::operation_e  op_cast;
+    fpnew_pkg::fp_format_e  src_fmt_cast;
+    fpnew_pkg::fp_format_e  dst_fmt_cast;
+    fpnew_pkg::int_format_e int_fmt_cast;
+
+    always_comb begin
+      rnd_mode_cast = fpnew_pkg::roundmode_e'(fpu_rm);
+      op_cast       = fpnew_pkg::operation_e'(fpu_op);
+      src_fmt_cast  = fpnew_pkg::fp_format_e'(fpu_srcfmt);
+      dst_fmt_cast  = fpnew_pkg::fp_format_e'(fpu_dstfmt);
+      int_fmt_cast  = fpnew_pkg::int_format_e'(fpu_ifmt);
+    end
+/*
     //---------------
     // FPU instance
     //---------------
@@ -545,7 +562,40 @@ module fpu_wrap import ariane_pkg::*; (
       .tag_o          ( fpu_trans_id_o                      ),
       .out_valid_o    ( fpu_out_valid                       ),
       .out_ready_i    ( fpu_out_ready                       ),
-      .busy_o         ( /* unused */                        )
+      .busy_o         ( /* unused                         )
+    ); */
+
+    //---------------
+    // FPU instance
+    //---------------
+
+    fpnew_top #(
+      .Features       ( FPU_FEATURES              ),
+      .Implementation ( FPU_IMPLEMENTATION        ),
+      .TagType        ( logic [TRANS_ID_BITS-1:0] )
+    ) i_fpnew_bulk (
+      .clk_i,
+      .rst_ni,
+      .hart_id_i      ( '0                    ),
+      .operands_i     ( fpu_operands          ),
+      .rnd_mode_i     ( rnd_mode_cast         ), // <- Sinal procedural
+      .op_i           ( op_cast               ), // <- Sinal procedural
+      .op_mod_i       ( fpu_op_mod            ),
+      .src_fmt_i      ( src_fmt_cast          ), // <- Sinal procedural
+      .dst_fmt_i      ( dst_fmt_cast          ), // <- Sinal procedural
+      .int_fmt_i      ( int_fmt_cast          ), // <- Sinal procedural
+      .vectorial_op_i ( fpu_vec_op            ),
+      .tag_i          ( fpu_tag               ),
+      .simd_mask_i    ( '1                    ),
+      .in_valid_i     ( fpu_in_valid          ),
+      .in_ready_o     ( fpu_in_ready          ),
+      .flush_i,
+      .result_o,
+      .status_o       ( fpu_status            ),
+      .tag_o          ( fpu_trans_id_o        ),
+      .out_valid_o    ( fpu_out_valid         ),
+      .out_ready_i    ( fpu_out_ready         ),
+      .busy_o         ( /* unused */          )
     );
 
     // Pack status flag into exception cause, tval ignored in wb, exception is always invalid

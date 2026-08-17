@@ -82,6 +82,10 @@ module request_scheduler import ariane_pkg::*; import std_cache_pkg::*; import t
     if ($urandom_range(1))
       addr = addr + ArianeCfg.CachedRegionAddrBase[0];
     active_port = $urandom_range(2);
+
+    $display("[%0t ns] [CPU PORT %0d] Pedido enviado para a Cache (data_req=1). Endereço: 0x%h", 
+             $time, active_port, addr);
+
     `WAIT_CYC(clk_i, 1)
 
     req_ports_i[active_port].data_req  = 1'b1;
@@ -89,6 +93,8 @@ module request_scheduler import ariane_pkg::*; import std_cache_pkg::*; import t
     req_ports_i[active_port].address_tag   = addr2tag(addr);
     req_ports_i[active_port].address_index = addr2index(addr);
     `WAIT_SIG(clk_i, req_ports_o[active_port].data_gnt)
+    $display("[%0t ns] [CPU PORT %0d] Cache aceitou o pedido! (data_gnt=1)", 
+             $time, active_port);
     req_ports_i[active_port].data_req  = 1'b0;
     req_ports_i[active_port].tag_valid     = 1'b1;
     `WAIT_CYC(clk_i,1)
@@ -96,25 +102,6 @@ module request_scheduler import ariane_pkg::*; import std_cache_pkg::*; import t
     `WAIT_CYC(clk_i,1)
   endtask
 
-/*
-// INÍCIO DA CORREÇÃO: Inicialização segura
-    req_ports_i[active_port] = '{default: '0};
-
-    req_ports_i[active_port].data_req  = 1'b1;
-    req_ports_i[active_port].data_size = 2'b11;
-    req_ports_i[active_port].address_tag   = addr2tag(addr);
-    req_ports_i[active_port].address_index = addr2index(addr);
-    `WAIT_SIG(clk_i, req_ports_o[active_port].data_gnt)
-    req_ports_i[active_port].data_req  = 1'b0;
-    req_ports_i[active_port].tag_valid     = 1'b1;
-    `WAIT_CYC(clk_i,1)
-    
-    // CORREÇÃO: Limpeza segura em vez de "req_ports_i = '0;"
-    req_ports_i[active_port] = '{default: '0};
-    
-    `WAIT_CYC(clk_i,1)
-  endtask
-*/
   task automatic genWrReq();
     logic [31:0] addr;
 
@@ -122,6 +109,8 @@ module request_scheduler import ariane_pkg::*; import std_cache_pkg::*; import t
     if ($urandom_range(1))
       addr = addr + ArianeCfg.CachedRegionAddrBase[0];
     active_port = $urandom_range(2);
+    $display("[%0t ns] [CPU PORT %0d] Pedido enviado para a Cache (data_req=1). Endereço: 0x%h", 
+             $time, active_port, addr);
     `WAIT_CYC(clk_i, 1)
 
     req_ports_i[active_port].data_req  = 1'b1;
@@ -132,26 +121,12 @@ module request_scheduler import ariane_pkg::*; import std_cache_pkg::*; import t
     req_ports_i[active_port].tag_valid     = 1'b1;
     req_ports_i[active_port].address_index = addr2index(addr);
     `WAIT_SIG(clk_i, req_ports_o[active_port].data_gnt)
+    $display("[%0t ns] [CPU PORT %0d] Cache aceitou o pedido! (data_gnt=1)", 
+             $time, active_port);
     req_ports_i = '0;
     `WAIT_CYC(clk_i,1)
   endtask
 
-/*
-req_ports_i[active_port].data_req  = 1'b1;
-    req_ports_i[active_port].data_we  = 1'b1;
-    req_ports_i[active_port].data_be  = '1;
-    req_ports_i[active_port].data_size = 2'b11;
-    req_ports_i[active_port].address_tag   = addr2tag(addr);
-    req_ports_i[active_port].tag_valid     = 1'b1;
-    req_ports_i[active_port].address_index = addr2index(addr);
-    `WAIT_SIG(clk_i, req_ports_o[active_port].data_gnt)
-    
-    // CORREÇÃO: Limpeza segura em vez de "req_ports_i = '0;"
-    req_ports_i[active_port] = '{default: '0};
-    
-    `WAIT_CYC(clk_i,1)
-  endtask
-*/
   // Scheduler
 
   typedef enum int {READ, WRITE, SNOOP} state_req_t;
@@ -173,30 +148,37 @@ req_ports_i[active_port].data_req  = 1'b1;
     forever begin
       // randomly select the next transaction
       $cast(state_req, $urandom_range(SNOOP, READ));
+
+      $display("[%0t ns] [SCHEDULER] Sorteio concluído -> Transação: %s | Porta CPU: %0d", 
+             $time, state_req.name(), active_port);
+
       case (state_req)
         READ: begin
+          $display("[%0t ns] [SCHEDULER] Preparando requisição de LEITURA (READ)...", $time);
           genRdReq();
         end
 
         WRITE: begin
+          $display("[%0t ns] [SCHEDULER] Preparando requisição de ESCRITA (WRITE)...", $time);
           genWrReq();
         end
 
         SNOOP: begin
+          $display("[%0t ns] [SCHEDULER] Preparando requisição de SNOOP...", $time);
           snoop_rand_master.run(1);
         end
       endcase
 
       fork
         begin
-          $display("[%0t] aguardando check_done_i", $time);
+          $display("[%0t ns] [SCHEDULER] Transação injetada. Aguardando o Checker validar (check_done_i)...", $time);
           `WAIT_SIG(clk_i, check_done_i)
-          $display("[%0t] check_done_i RECEBIDO", $time);
+          $display("[%0t ns] [SCHEDULER] check_done_i RECEBIDO! Transação validada com sucesso.", $time);
           
           while (check_done_i == 1'b1) begin
             @(posedge clk_i);
           end
-          $display("[%0t] Checker pronto para a proxima!", $time);
+          $display("[SCHEDULER] [%0t] Checker pronto para a proxima!", $time); 
           
         end
         begin

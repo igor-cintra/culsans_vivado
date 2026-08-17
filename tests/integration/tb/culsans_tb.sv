@@ -32,15 +32,18 @@ module culsans_tb
     localparam int unsigned NB_CORES           = culsans_pkg::NB_CORES;
     localparam int unsigned NUM_WORDS          = 4**10;
     localparam bit          STALL_RANDOM_DELAY = 1'b1;
-    localparam bit          HAS_LLC            = 1'b1;
-
+    localparam bit          HAS_LLC            = 1'b1; // LLC reativado
+    //localparam bit          HAS_LLC            = 1'b0;
+    
     // The length of cached, shared region is derived from other constants
     localparam int CachedSharedRegionLength =  ArianeCfg.SharedRegionAddrBase[0] + ArianeCfg.SharedRegionLength[0] - ArianeCfg.CachedRegionAddrBase[0];
     initial assert (CachedSharedRegionLength > 0) else $error ("Got negative CachedSharedRegionLength");
 
     // TB signals
-    dcache_req_i_t [NB_CORES][DCACHE_PORTS] dcache_req_ports_i;
-    dcache_req_o_t [NB_CORES][DCACHE_PORTS] dcache_req_ports_o;
+    //dcache_req_i_t [NB_CORES-1:0][DCACHE_PORTS-1:0] dcache_req_ports_i;
+    //dcache_req_o_t [NB_CORES-1:0][DCACHE_PORTS-1:0] dcache_req_ports_o;
+    dcache_req_i_t [NB_CORES-1:0][DCACHE_PORTS-1:0] dcache_req_ports_i; // [i] correction about single value range is not allowed in packed dimension
+    dcache_req_o_t [NB_CORES-1:0][DCACHE_PORTS-1:0] dcache_req_ports_o; // [i] correction about single value range is not allowed in packed dimension
     logic                                   clk;
     logic                                   rst_n;
     logic                                   rtc;
@@ -77,20 +80,23 @@ module culsans_tb
         .DCACHE_SET_ASSOC (DCACHE_SET_ASSOC)
     ) sram_if [NB_CORES] ();
 
+    `ifndef ISOLATE_DUT_ONLY
     std_cache_scoreboard #(
         .AXI_ADDR_WIDTH ( AxiAddrWidth ),
         .AXI_DATA_WIDTH ( AxiDataWidth ),
         .AXI_ID_WIDTH   ( AxiIdWidth   ),
         .AXI_USER_WIDTH ( AxiUserWidth )
     ) cache_scbd [NB_CORES];
-
+    `endif
     std_dcache_checker #(
         .NB_CORES        ( NB_CORES     ),
         .SRAM_DATA_WIDTH ( AxiDataWidth ),
         .SRAM_NUM_WORDS  ( NUM_WORDS    )
     ) dcache_chk;
 
-    // ACE mailboxes
+//**************************************************************************************************************
+// MAILBOXES GENÉRICAS ORIGINAIS
+    /*// ACE mailboxes
     mailbox aw_mbx [NB_CORES];
     mailbox w_mbx  [NB_CORES];
     mailbox b_mbx  [NB_CORES];
@@ -100,8 +106,23 @@ module culsans_tb
     // Snoop mailboxes
     mailbox ac_mbx [NB_CORES];
     mailbox cd_mbx [NB_CORES];
-    mailbox cr_mbx [NB_CORES];
+    mailbox cr_mbx [NB_CORES]; */
+//**************************************************************************************************************
 
+//**************************************************************************************************************
+// AJUSTE DE TIPOS DA MAILBOXES
+    // ACE mailboxes
+    mailbox #(ace_test::ace_ax_beat #(.AW(AxiAddrWidth), .IW(AxiIdWidth), .UW(AxiUserWidth))) aw_mbx [NB_CORES];
+    mailbox #(ace_test::axi_w_beat #(.DW(AxiDataWidth), .UW(AxiUserWidth)))                   w_mbx  [NB_CORES];
+    mailbox #(ace_test::axi_b_beat #(.IW(AxiIdWidth), .UW(AxiUserWidth)))                     b_mbx  [NB_CORES];
+    mailbox #(ace_test::ace_ax_beat #(.AW(AxiAddrWidth), .IW(AxiIdWidth), .UW(AxiUserWidth))) ar_mbx [NB_CORES];
+    mailbox #(ace_test::ace_r_beat #(.DW(AxiDataWidth), .IW(AxiIdWidth), .UW(AxiUserWidth)))  r_mbx  [NB_CORES];
+
+    // Snoop mailboxes
+    mailbox #(snoop_test::ace_ac_beat #(.AW(AxiAddrWidth))) ac_mbx [NB_CORES];
+    mailbox #(snoop_test::ace_cd_beat #(.DW(AxiDataWidth))) cd_mbx [NB_CORES];
+    mailbox #(snoop_test::ace_cr_beat)                      cr_mbx [NB_CORES];
+//**************************************************************************************************************
     //--------------------------------------------------------------------------
     // Clock & reset generation
     //--------------------------------------------------------------------------
@@ -110,13 +131,26 @@ module culsans_tb
         clk   = 1'b0;
         rst_n = 1'b0;
 
-        repeat(8)
-            #(CLK_PERIOD/2) clk = ~clk;
+        $display("[%0t] reset declarado", $time);
+
+        //repeat(8)
+        //    #(CLK_PERIOD/2) clk = ~clk;
+
+        repeat(8) begin
+        #(CLK_PERIOD/2);
+        clk = ~clk;
+        $display("[%0t] clk toggle: clk=%b rst_n=%b", $time, clk, rst_n);
+        end
+
+        $display("[%0t] repeat finalizado, liberando reset", $time);
 
         rst_n = 1'b1;
 
+        $display("[%0t] rst_n=%b", $time, rst_n);
+
         forever begin
             #(CLK_PERIOD/2) clk = ~clk;
+            $display("[%0t] clk toggle: clk=%b rst_n=%b", $time, clk, rst_n);
         end
 
     end
@@ -140,8 +174,8 @@ module culsans_tb
         .StallRandomInput (STALL_RANDOM_DELAY),
         .StallRandomOutput(STALL_RANDOM_DELAY),
         .HasLLC           (HAS_LLC),
-        .FixedDelayInput  (0),
-        .FixedDelayOutput (0),
+        .FixedDelayInput  (1), //alterado de 0 para 1 
+        .FixedDelayOutput (1), //alterado de 0 para 1 
         .BootAddress      (culsans_pkg::DRAMBase + 64'h10_0000)
     ) i_culsans (
         .clk_i  ( clk      ),
@@ -209,6 +243,7 @@ module culsans_tb
         `SNOOP_ASSIGN_MONITOR (snoop_bus_dv [core_idx], snoop_bus [core_idx])
     end
 
+    `ifndef ISOLATE_DUT_ONLY
     // AXI/ACE monitors
     ace_monitor #(
         .IW ( AxiIdWidth   ),
@@ -221,6 +256,7 @@ module culsans_tb
         .AW ( AxiAddrWidth ),
         .DW ( AxiDataWidth )
     ) snoop_mon [NB_CORES-1:0];
+    `endif
 
     // CCU monitor & scoreboard
     ace_ccu_monitor #(
@@ -242,7 +278,20 @@ module culsans_tb
     // CCU monitor
     bit enable_ccu_mon=1;
     bit ccu_mon_end_check=0;
+
+    `ifdef ISOLATE_DUT_ONLY
+    initial begin
+        $display("[%0t] ISOLATE_DUT_ONLY ativo: CCU_MON deve ficar desabilitado", $time);
+    end
+    `else
+    initial begin
+        $display("[%0t] ISOLATE_DUT_ONLY nao definido: CCU_MON sera criado", $time);
+    end
+    `endif
+
+    `ifndef ISOLATE_DUT_ONLY
     initial begin : CCU_MON
+        $display("[%0t] DEBUG CCU_MON: antes do new()", $time);
         ccu_mon = new(ace_bus_dv, axi_bus_dv, snoop_bus_dv);
         void'($value$plusargs("ENABLE_CCU_MON=%b", enable_ccu_mon));
     end
@@ -255,10 +304,10 @@ module culsans_tb
             $display("--------------------------------------------------------------------------");
         end
     end
-
+    `endif
 
     for (genvar core_idx=0; core_idx<NB_CORES; core_idx++) begin : CORE
-
+        `ifndef ISOLATE_DUT_ONLY
         initial begin : ACE_MON
             aw_mbx [core_idx] = new();
             w_mbx  [core_idx] = new();
@@ -286,6 +335,7 @@ module culsans_tb
             snoop_mon[core_idx].cd_mbx = cd_mbx[core_idx];
             snoop_mon[core_idx].cr_mbx = cr_mbx[core_idx];
         end
+        `endif
 
         // assign SRAM IF
         assign dc_sram_if[core_idx].vld_sram  = i_culsans.gen_ariane[core_idx].i_ariane.i_cva6.WB.i_cache_subsystem.i_nbdcache.valid_dirty_sram.i_tc_sram.sram;
@@ -357,11 +407,13 @@ module culsans_tb
         assign mgmt_if[core_idx].dcache_miss      = i_culsans.gen_ariane[core_idx].i_ariane.i_cva6.dcache_miss_cache_perf;
         assign mgmt_if[core_idx].wbuffer_empty    = i_culsans.gen_ariane[core_idx].i_ariane.i_cva6.dcache_commit_wbuffer_empty;
 
+        `ifndef ISOLATE_DUT_ONLY
         initial begin : DCACHE_MGMT_MON
             mgmt_mbox[core_idx] = new();
             dcache_mgmt_mon[core_idx] = new(mgmt_if[core_idx], $sformatf("%s[%0d]","dcache_mgmt_monitor",core_idx));
             dcache_mgmt_mon[core_idx].mbox = mgmt_mbox[core_idx];
         end
+        `endif
 
         for (genvar port=0; port<=2; port++) begin : PORT
             // assign dcache request/response to dcache_if
@@ -416,6 +468,8 @@ module culsans_tb
         assign amo_if[core_idx].resp = i_culsans.gen_ariane[core_idx].i_ariane.i_cva6.amo_resp;
         assign amo_if[core_idx].gnt  = (i_culsans.gen_ariane[core_idx].i_ariane.i_cva6.WB.i_cache_subsystem.i_nbdcache.i_miss_handler.state_q == 0) && // IDLE
                                        (i_culsans.gen_ariane[core_idx].i_ariane.i_cva6.WB.i_cache_subsystem.i_nbdcache.i_miss_handler.busy_i  == 0);
+        
+         `ifndef ISOLATE_DUT_ONLY                               
         initial begin : AMO_MON
             amo_req_mbox  [core_idx] = new();
             amo_resp_mbox [core_idx] = new();
@@ -425,7 +479,9 @@ module culsans_tb
             amo_mon[core_idx].req_mbox  = amo_req_mbox[core_idx];
             amo_mon[core_idx].resp_mbox = amo_resp_mbox[core_idx];
         end
+        `endif
 
+        `ifndef ISOLATE_DUT_ONLY
         initial begin : CACHE_SCBD
             cache_scbd[core_idx] = new(dc_sram_if[core_idx], gnt_if[core_idx], ArianeCfg, $sformatf("%s[%0d]","dcache_scoreboard",core_idx));
             amo_req_mbox_fwd      [core_idx] = new();
@@ -457,6 +513,7 @@ module culsans_tb
 
             cache_scbd[core_idx].mgmt_mbox         = mgmt_mbox         [core_idx];
         end
+        `endif
 
         // assign SRAM IF
         for (genvar w=0; w<DCACHE_SET_ASSOC; w++) begin
@@ -468,6 +525,8 @@ module culsans_tb
 
 
     bit enable_mem_check=1;
+
+    `ifndef ISOLATE_DUT_ONLY
     initial begin
         dcache_chk = new(sram_if, dc_sram_if, ArianeCfg, "dcache_checker");
         void'($value$plusargs("ENABLE_MEM_CHECK=%b", enable_mem_check));
@@ -481,6 +540,7 @@ module culsans_tb
             dcache_chk.dcache_resp_mbox[core_idx] = dcache_resp_mbox_fwd [core_idx];
         end
     end
+    `endif
 
     // start custom AMO lock checker
     task automatic start_amo_check;
@@ -505,11 +565,13 @@ module culsans_tb
                             join_none
                         end
                     end
-                    ace_mon[core_idx].monitor();
-                    snoop_mon[core_idx].monitor();
                     amo_mon[core_idx].monitor();
                     dcache_mgmt_mon[core_idx].monitor();
+                    `ifndef ISOLATE_DUT_ONLY
+                    ace_mon[core_idx].monitor();
+                    snoop_mon[core_idx].monitor();
                     cache_scbd[core_idx].run();
+                    `endif
                 join_none
             end
             if (enable_ccu_mon) begin
@@ -538,15 +600,24 @@ module culsans_tb
         static    string mem_init_file = "main.hex";
         automatic string testname      = "";
 
+        $display("[%0t] DEBUG 1: bloco TESTS iniciado", $time);
+
         if (!$value$plusargs("TESTNAME=%s", testname)) begin
             $error("No TESTNAME plusarg given");
         end
 
         test_header(testname, "");
 
+        // --- INÍCIO DAS ESCUTAS DE DEBUG ---
+        $display(">>> [DEBUG 1] Chegamos no bloco de testes no Tempo: %0t", $time);
+
         @(posedge rst_n);
+
+        $display(">>> [DEBUG 2] O Reset (rst_n) subiu! O relogio esta funcionando. Tempo: %0t", $time);
+
         #2
         $readmemh(mem_init_file, i_culsans.i_sram.i_tc_sram.sram);
+        $display(">>> [DEBUG 3] Memoria inicializada com sucesso!");
 
         case (testname)
             "amo_mutex", "raw_spin_lock" : begin

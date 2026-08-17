@@ -38,8 +38,17 @@ package tb_std_cache_subsystem_pkg;
     //--------------------------------------------------------------------------
 
     // define min and max functions
-    let max(a,b) = (a > b) ? a : b;
-    let min(a,b) = (a < b) ? a : b;
+    //let max(a,b) = (a > b) ? a : b;
+    //let min(a,b) = (a < b) ? a : b;
+
+    // define min and max functions using automatic functions
+    function automatic int max(input int a, input int b);
+        return (a > b) ? a : b;
+    endfunction
+
+    function automatic int min(input int a, input int b);
+        return (a < b) ? a : b;
+    endfunction
 
     // get tag from address
     function automatic logic [DCACHE_TAG_WIDTH-1:0] addr2tag (input logic[63:0] addr);
@@ -1178,13 +1187,36 @@ package tb_std_cache_subsystem_pkg;
         mailbox #(amo_resp)      amo_resp_mbox, amo_resp_mbox_fwd;
 
         mailbox #(dcache_mgmt_trans) mgmt_mbox;
-
-        // ACE mailboxes
+//**************************************************************************************************************
+// MAILBOXES GENÉRICAS ORIGINAIS 
+/*        // ACE mailboxes
         mailbox aw_mbx = new, w_mbx = new, b_mbx = new, ar_mbx = new, r_mbx = new;
         mailbox aw_mbx_pre_filt = new, w_mbx_pre_filt = new, b_mbx_pre_filt = new, ar_mbx_pre_filt = new, r_mbx_pre_filt = new;
 
         // Snoop mailboxes
-        mailbox ac_mbx = new, ac_mbx_int = new, cd_mbx = new, cr_mbx = new;
+        mailbox ac_mbx = new, ac_mbx_int = new, cd_mbx = new, cr_mbx = new; */
+//**************************************************************************************************************
+
+//**************************************************************************************************************
+// AJUSTE DE TIPOS DA MAILBOXES
+        // ACE mailboxes
+        mailbox #(ax_ace_beat_t) aw_mbx = new(), ar_mbx = new();
+        mailbox #(w_beat_t)      w_mbx = new();
+        mailbox #(b_beat_t)      b_mbx = new();
+        mailbox #(r_ace_beat_t)  r_mbx = new();
+    
+        mailbox #(ax_ace_beat_t) aw_mbx_pre_filt = new(), ar_mbx_pre_filt = new();
+        mailbox #(w_beat_t)      w_mbx_pre_filt = new();
+        mailbox #(b_beat_t)      b_mbx_pre_filt = new();
+        mailbox #(r_ace_beat_t)  r_mbx_pre_filt = new();
+
+        // Snoop mailboxes
+        mailbox #(ace_ac_beat_t) ac_mbx = new(), ac_mbx_int = new();
+        mailbox #(ace_cd_beat_t) cd_mbx = new();
+        mailbox #(ace_cr_beat_t) cr_mbx = new();
+//**************************************************************************************************************
+// AJUSTE DE TIPOS DA MAILBOXES
+
 
         virtual dcache_sram_if sram_vif;
         virtual dcache_gnt_if  gnt_vif;
@@ -3048,7 +3080,13 @@ package tb_std_cache_subsystem_pkg;
 
         mailbox #(dcache_req)  dcache_req_mbox  [NB_CORES];
         mailbox #(dcache_resp) dcache_resp_mbox [NB_CORES];
+/*
+        mailbox   amo_req_mbox  [NB_CORES];
+        mailbox   amo_resp_mbox [NB_CORES];
 
+        mailbox   dcache_req_mbox  [NB_CORES];
+        mailbox   dcache_resp_mbox [NB_CORES];
+*/
         function new (
             virtual sram_intf #(DCACHE_SET_ASSOC, SRAM_DATA_WIDTH, SRAM_NUM_WORDS) sram_vif    [NB_CORES],
             virtual dcache_sram_if                                                 dc_sram_vif [NB_CORES],

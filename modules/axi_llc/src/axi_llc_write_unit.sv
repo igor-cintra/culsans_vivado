@@ -104,8 +104,8 @@ module axi_llc_write_unit #(
     .valid_o    ( w_valid        ),
     .ready_i    ( w_ready        )
   );
-
-  // way_inp assignments
+//////////////////////////////////////////////
+  /*// way_inp assignments
   assign way_inp_o = '{
     cache_unit: axi_llc_pkg::WChanUnit,
     way_ind:    desc_q.way_ind,
@@ -114,7 +114,22 @@ module axi_llc_write_unit #(
     we:         1'b1,
     data:       w_chan.data,
     strb:       w_chan.strb
-  };
+  };    */
+  // way_inp assignments
+  way_inp_t way_inp_tmp;
+  always_comb begin
+    way_inp_tmp = way_inp_t'('0); // Bypass parsing recursivo
+
+    way_inp_tmp.cache_unit = axi_llc_pkg::WChanUnit;
+    way_inp_tmp.way_ind    = desc_q.way_ind;
+    way_inp_tmp.line_addr  = desc_q.a_x_addr[(Cfg.ByteOffsetLength + Cfg.BlockOffsetLength) +: Cfg.IndexLength];
+    way_inp_tmp.blk_offset = desc_q.a_x_addr[ Cfg.ByteOffsetLength +: Cfg.BlockOffsetLength];
+    way_inp_tmp.we         = 1'b1;
+    way_inp_tmp.data       = w_chan.data;
+    way_inp_tmp.strb       = w_chan.strb;
+  end
+  assign way_inp_o = way_inp_tmp;
+//////////////////////////////////////////////
 
   // assignment of the write unlock fields, which are not set with the control below
   assign w_unlock_o = '{
@@ -194,13 +209,23 @@ module axi_llc_write_unit #(
       load_busy = 1'b1;
     end
   endfunction : load_new_desc
-
-  // assign of the B channel FIFO input
+//////////////////////////////////////////////
+  /*// assign of the B channel FIFO input
   assign b_chan = '{
     id:      desc_q.a_x_id,
     resp:    desc_q.x_resp,
     default: '0
-  };
+  };  */
+  // assign of the B channel FIFO input
+  b_chan_t b_chan_tmp;
+  always_comb begin
+    b_chan_tmp = b_chan_t'('0); // Bypass parsing recursivo
+
+    b_chan_tmp.id   = desc_q.a_x_id;
+    b_chan_tmp.resp = axi_pkg::resp_t'(desc_q.x_resp); // mantendo sintaxe do canal
+  end
+  assign b_chan = b_chan_tmp;
+  //////////////////////////////////////////////
 
   // Spill register so that the B response is one cycle after W last.
   spill_register #(

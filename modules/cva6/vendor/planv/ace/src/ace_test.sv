@@ -1421,8 +1421,16 @@ endclass
     typedef ace_driver_t::r_ace_beat_t  r_ace_beat_t;
 
     ace_driver_t          drv;
+//**************************************************************************************************************
+    /*// MAILBOXES GENÉRICAS ORIGINAIS 
     mailbox aw_mbx = new, w_mbx = new, b_mbx = new,
-            ar_mbx = new, r_mbx = new;
+            ar_mbx = new, r_mbx = new; */
+//**************************************************************************************************************
+// AJUSTE DE TIPOS DA MAILBOXES
+    mailbox #(ax_ace_beat_t) aw_mbx = new(), ar_mbx = new();
+    mailbox #(w_beat_t)      w_mbx  = new();
+    mailbox #(b_beat_t)      b_mbx  = new();
+    mailbox #(r_ace_beat_t)  r_mbx  = new();
 
     function new(
       virtual ACE_BUS_DV #(

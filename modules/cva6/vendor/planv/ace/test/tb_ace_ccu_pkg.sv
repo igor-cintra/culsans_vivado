@@ -354,7 +354,8 @@ package tb_ace_ccu_pkg;
         axi_b_id = masters_axi[i].b_id;
         $display("%0tns > Master %0d: Got last B with id: %b",
                 $time, i, axi_b_id);
-        if (this.exp_b_queue[i].empty()) begin
+        //if (this.exp_b_queue[i].empty()) begin
+        if (this.exp_b_queue[i].size == 0) begin        
           incr_failed_tests(1);
           $warning("Master %d: unexpected B beat with ID: %b detected!", i, axi_b_id);
         end else begin
@@ -441,7 +442,8 @@ package tb_ace_ccu_pkg;
       if (slaves_axi[i].ar_valid && slaves_axi[i].ar_ready) begin
         incr_conducted_tests(1);
         slv_axi_id = slaves_axi[i].ar_id;
-        if (this.exp_ar_queue[i].empty()) begin
+        //if (this.exp_ar_queue[i].empty()) begin
+        if (this.exp_ar_queue[i].size == 0) begin
           incr_failed_tests(1);
         end else begin
           // check that the ids are the same
@@ -469,7 +471,8 @@ package tb_ace_ccu_pkg;
           $display("%0tns > Master %0d: Got last R with id: %b",
                    $time, i, mst_axi_r_id);
         end
-        if (this.exp_r_queue[i].empty()) begin
+        //if (this.exp_r_queue[i].empty()) begin
+        if (this.exp_r_queue[i].size == 0) begin
           incr_failed_tests(1);
           $warning("Master %d: unexpected R beat with ID: %b detected!", i, mst_axi_r_id);
         end else begin
